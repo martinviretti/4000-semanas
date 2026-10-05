@@ -28,7 +28,7 @@
         { k: "Lo que le queda", u: "semanas libres", t: "Todo lo demás ya tiene dueño." },
         { k: "Tu turno", u: "", t: "¿Y vos? Hacé tu cuenta." },
       ],
-      s1title: "Hacé tu cuenta", exampleNote: "Ejemplo: 30 años y 4 h. Poné los tuyos.",
+      s1title: "Hacé tu cuenta", introAgain: "Ver la introducción de nuevo", exampleNote: "Ejemplo: 30 años y 4 h. Poné los tuyos.",
       age: "Tu edad", ageUnit: "años", hours: "Celular por día",
       ariaAgeMinus: "Restar un año", ariaAgePlus: "Sumar un año", ariaHMinus: "Restar media hora", ariaHPlus: "Sumar media hora", ariaTarget: "Horas a las que bajarías",
       guideQ: "¿No sabés? Fijate en tu celular", guideNote: "Usá el promedio diario de la última semana.",
@@ -129,7 +129,7 @@
         { k: "What's left", u: "free weeks", t: "Everything else is already spoken for." },
         { k: "Your turn", u: "", t: "What about you? Do your numbers." },
       ],
-      s1title: "Your turn", exampleNote: "Example: 30 years and 4 h. Enter yours.",
+      s1title: "Your turn", introAgain: "Watch the intro again", exampleNote: "Example: 30 years and 4 h. Enter yours.",
       age: "Your age", ageUnit: "years", hours: "Phone per day",
       ariaAgeMinus: "One year less", ariaAgePlus: "One year more", ariaHMinus: "Half an hour less", ariaHPlus: "Half an hour more", ariaTarget: "Hours you'd cut down to",
       guideQ: "Not sure? Check your phone", guideNote: "Use the daily average for the last week.",
@@ -535,8 +535,11 @@
     : null;
   function renderFriend() {
     if (!friend) return;
+    const txt = t().friendTxt(friend.name || t().friendDefault, fmtInt(friend.phone));
     $("#friend").hidden = false;
-    $("#friend-txt").innerHTML = t().friendTxt(friend.name || t().friendDefault, fmtInt(friend.phone));
+    $("#friend-txt").innerHTML = txt;
+    $("#friend-calc").hidden = !document.body.classList.contains("returning");
+    $("#friend-calc-txt").innerHTML = txt;
   }
   function renderDuel() {
     const box = $("#duel");
@@ -763,11 +766,19 @@
     $("#sound-x").toggleAttribute("hidden", on);
     $("#sound-w").toggleAttribute("hidden", !on);
   }
+  const markSeen = () => localStorage.setItem("seenVideo", "1");
   function renderStartScreen() {
-    const back = seenVideo();
-    $("#start-txt").textContent = back ? t().startReturn : t().startBtn;
-    $("#start-skip").textContent = back ? t().startAgain : t().startSkip;
-    $("#start-note").hidden = back;
+    $("#start-txt").textContent = t().startBtn;
+    $("#start-skip").textContent = t().startSkip;
+    $("#start-note").hidden = false;
+  }
+  /* volver a mostrar la introducción completa (para quien entró directo a su cuenta) */
+  function showIntro() {
+    document.body.classList.remove("returning");
+    $("#intro-again").hidden = true;
+    $("#friend-calc").hidden = true;
+    window.scrollTo(0, 0);
+    startHero();
   }
   function startHero() {
     heroStarted = true;
@@ -784,7 +795,7 @@
     if (heroDone) return;
     heroDone = true;
     heroStarted = true;
-    localStorage.setItem("seenVideo", "1");
+    if (video.duration && video.currentTime >= video.duration * 0.7) markSeen();
     video.pause();
     $("#hero-start").hidden = true;
     $("#hero-top").hidden = true;
@@ -793,10 +804,8 @@
     kickStory();
     if (scroll) smoothScrollTo($("#story").offsetTop, 1300);
   }
-  $("#start").addEventListener("click", () => {
-    if (seenVideo()) { finishHero(false); goCalc(); } else startHero();
-  });
-  $("#start-skip").addEventListener("click", () => (seenVideo() ? startHero() : finishHero()));
+  $("#start").addEventListener("click", startHero);
+  $("#start-skip").addEventListener("click", () => finishHero());
   $("#sound").addEventListener("click", () => {
     video.muted = !video.muted;
     if (video.paused && !video.ended) playHero();
@@ -804,13 +813,16 @@
   });
   $("#hero-play").addEventListener("click", () => { video.muted = false; setSoundUI(); playHero(); });
   video.addEventListener("timeupdate", () => {
-    if (video.duration) $("#hero-bar").style.transform = `scaleX(${video.currentTime / video.duration})`;
+    if (!video.duration) return;
+    $("#hero-bar").style.transform = `scaleX(${video.currentTime / video.duration})`;
+    if (video.currentTime >= video.duration * 0.7) markSeen();
   });
   video.addEventListener("ended", () => finishHero());
   $("#skip").addEventListener("click", () => finishHero());
   $("#end-go").addEventListener("click", goCalc);
   $("#end-again").addEventListener("click", startHero);
-  $("#replay").addEventListener("click", () => { window.scrollTo(0, 0); startHero(); });
+  $("#replay").addEventListener("click", showIntro);
+  $("#intro-again").addEventListener("click", showIntro);
 
   // ───────────────── 2. historia (formato historias) ─────────────────
   const story = computeModel({ L: 80, A: 40, H: 3.75, H2: 3.75, S: 8, W: 40, R: 65 });
@@ -922,6 +934,7 @@
     $("#story-next").classList.toggle("final", i === LAST);
     $("#story-next-txt").textContent = i === LAST ? t().nextFinal : t().next;
     $("#story-skip").hidden = i === LAST;
+    if (i === LAST) markSeen();
     kickStory();
   }
   const storyNext = () => (sStep >= LAST ? goCalc() : setStoryStep(sStep + 1));
@@ -1265,6 +1278,12 @@
 
   // ───────────────── inicio ─────────────────
   if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+  if (seenVideo()) {
+    document.body.classList.add("returning");
+    heroDone = true;
+    heroStarted = true;
+    $("#intro-again").hidden = false;
+  }
   if (!location.hash) window.scrollTo(0, 0);
   $("#presets").innerHTML = [1, 2, 3, 4, 5, 6, 8, 10].map((h) => `<button type="button" class="pre" data-h="${h}">${h} h</button>`).join("");
   onHoursChanged();

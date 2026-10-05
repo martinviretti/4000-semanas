@@ -83,3 +83,18 @@ Un agente UX/UI hizo una auditoría "desde afuera" (celular, tablet y escritorio
 
 No se aplicó (decisión consciente): cambiar el naranja de trabajo a violeta, para no romper la coherencia con
 los videos; y usar una persona de 30 años en la historia, porque se mantiene la de 40 que se pidió.
+
+## Quien vuelve entra directo a su cuenta
+
+- La app guarda en el navegador (`localStorage.seenVideo`) si la persona **ya vio la introducción**:
+  el video llegó al final o al 70 %, o terminó la historia. Tocar "Saltar el video" apenas entra **no** cuenta.
+- Si ya la vio, al abrir no aparecen el video ni la historia: entra directo a **Hacé tu cuenta**, con un botón
+  "Ver la introducción de nuevo" arriba (y "Volver a ver el video" al final). Si llega por un link compartido,
+  el aviso "A X el celular le lleva N semanas" aparece dentro de la cuenta.
+
+## Publicar una versión nueva
+
+1. Subir `VERSION` en `sw.js` (por ejemplo `semanas-v8`) y el `?v=` de `styles.css`, `data.js` y `app.js` en
+   `index.html` y en la lista `FILES` de `sw.js`. Evita que el celular mezcle archivos nuevos y viejos
+   (GitHub Pages cachea unos 10 minutos).
+2. `git commit` y `git push`: GitHub Pages publica solo en 1–2 minutos.

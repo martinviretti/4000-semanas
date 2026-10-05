@@ -2134,3 +2134,38 @@ canvas.weeks {
     max-width: 440px;
   }
 }
+
+/* quien ya vio la introducción entra directo a su cuenta */
+body.returning #hero,
+body.returning #story {
+  display: none;
+}
+body.returning .top {
+  transform: none;
+}
+body.returning #vida {
+  padding-top: calc(72px + env(safe-area-inset-top));
+}
+.intro-again {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 0 16px 0 12px;
+  margin-bottom: 14px;
+  border: 1px solid #333;
+  border-radius: 999px;
+  background: transparent;
+  font-size: 14px;
+  font-weight: 700;
+  color: #d4d4d4;
+}
+.intro-again svg {
+  width: 16px;
+  height: 16px;
+}
+.friend.friend-calc {
+  position: static;
+  margin-bottom: 14px;
+  text-align: left;
+}

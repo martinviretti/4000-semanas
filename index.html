@@ -16,7 +16,7 @@
     <meta property="og:image" content="video/poster_es.jpg" />
     <link rel="preload" href="fonts/Inter-var.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="fonts/SpaceGrotesk-var.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="styles.css?v=7" />
   </head>
   <body>
     <header class="top" id="top">
@@ -97,6 +97,10 @@
     <main>
       <!-- ───────── 3. TU CUENTA ───────── -->
       <section id="vida" class="sec">
+        <button type="button" class="intro-again" id="intro-again" hidden>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor" /></svg><span data-i18n="introAgain">Ver la introducción de nuevo</span>
+        </button>
+        <div class="friend friend-calc" id="friend-calc" hidden><p id="friend-calc-txt"></p></div>
         <h2 class="h2" data-i18n="s1title">Hacé tu cuenta</h2>
 
         <div class="card inputs is-example" id="inputs">
@@ -254,7 +258,7 @@
     </div>
     <div id="toast" class="toast" role="status" aria-live="polite"></div>
 
-    <script src="data.js"></script>
-    <script src="app.js"></script>
+    <script src="data.js?v=7"></script>
+    <script src="app.js?v=7"></script>
   </body>
 </html>
