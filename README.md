@@ -10,16 +10,21 @@ Sin build ni backend: HTML + CSS + JS. Funciona offline después de la primera v
 1. **Pantalla de inicio**: el cuadrado que late + "Este cuadrado es una semana de tu vida" + botón **Empezar**.
    Ese toque es lo que permite reproducir **con sonido** desde el primer segundo (ningún navegador deja
    arrancar un video con audio sin un toque).
-2. **Video a pantalla completa** con sonido (parte 1, ~3,6 MB, según el idioma), botón Silenciar, Saltar y
-   barra de progreso.
+2. **Video a pantalla completa** con sonido (parte 1, versión corta de ~30 s, según el idioma), botón
+   Silenciar, Saltar y barra de progreso.
 3. **Cartel "¿Te animás a hacer la cuenta con tu vida?"** al terminar (o saltar) el video, con
    **Hacer mi cuenta** y "Volver a ver el video".
 4. **Tu cuenta**: edad y horas de celular por día (–/+ y horas típicas) y el botón **Ver mi resultado**.
-   El resultado se **revela** recién ahí: el número de semanas sube desde 0, después aparecen los años, el
-   "% de tu tiempo despierto · días enteros por año", la barra de lo que te queda, la comparación con tu
-   edad y las equivalencias (veranos, Mundiales, domingos). Debajo, la grilla de tu vida, "¿Y si bajás a…?"
-   y los supuestos. Después de revelarlo, cualquier cambio se actualiza en vivo.
-5. **¿Querés más datos?** al final, en paneles: por edad, antes y ahora, Argentina, fuentes y método.
+   El resultado se **revela** como en el video: la grilla de tu vida aparece en blanco y se pinta por partes
+   (vivido → dormir → trabajo → celular, ~4 s) mientras el número cuenta cada una; termina en "De acá a
+   los 80, el celular se lleva N semanas". Después aparecen las fichas de colores (tocá una para resaltarla
+   en la grilla), el "% de tu tiempo despierto", la comparación con tu edad, las equivalencias y Compartir.
+   Cualquier cambio posterior se actualiza en vivo.
+5. **¿Querés ver cuánto ahorrarías si usás menos?**: elegís a cuánto bajar (–/+ o −30 min, −1 h, −2 h,
+   la mitad; arranca en una hora menos) y ves las semanas que recuperás, los años y días por año, y una
+   grilla con tus semanas de celular de a 52 por fila (cada fila = 1 año) donde las recuperadas se ponen
+   en verde.
+6. **¿Querés más datos?** al final, en paneles: por edad, antes y ahora, Argentina, fuentes y método.
 
 ## Datos
 

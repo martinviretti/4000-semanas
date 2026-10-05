@@ -542,11 +542,7 @@ canvas.weeks {
 }
 
 /* ── qué pasa si ── */
-.recover {
-  font-size: 18px;
-  font-weight: 600;
-  margin-top: 6px;
-}
+
 .num-inline {
   font-family: "Space Grotesk", sans-serif;
   font-size: 28px;
@@ -1182,47 +1178,7 @@ canvas.weeks {
 .res-sub b {
   color: #fff;
 }
-.lifebar {
-  margin-top: 18px;
-  height: 22px;
-  display: flex;
-  border-radius: 6px;
-  overflow: hidden;
-  background: #1a1a1a;
-}
-.lifebar i {
-  display: block;
-  height: 100%;
-  transition: width 0.4s ease;
-}
-.lifebar-legend {
-  list-style: none;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 6px 14px;
-  margin-top: 10px;
-  font-size: 13px;
-  color: #d4d4d4;
-}
-.lifebar-legend li {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-.lifebar-legend .sw {
-  width: 11px;
-  height: 11px;
-  border-radius: 2px;
-}
-.lifebar-legend b {
-  color: #fff;
-  font-family: "Space Grotesk", sans-serif;
-}
-.lifebar-legend li.hl {
-  color: #fff;
-  font-weight: 700;
-}
+
 .res-compare {
   margin-top: 14px;
   font-size: 14.5px;
@@ -1601,23 +1557,7 @@ canvas.weeks {
 .res-sub {
   font-weight: 700;
 }
-.lifebar {
-  height: 12px;
-  margin-top: 16px;
-  gap: 2px;
-  background: transparent;
-}
-.lifebar i:first-child {
-  border-radius: 6px 0 0 6px;
-}
-.lifebar i:last-child {
-  border-radius: 0 6px 6px 0;
-}
-.lifebar-cap {
-  margin-top: 8px;
-  font-size: 13px;
-  color: var(--muted);
-}
+
 .res-compare {
   font-size: 15px;
   font-weight: 600;
@@ -1703,34 +1643,14 @@ canvas.weeks {
   display: inline-block;
   vertical-align: middle;
 }
-.lived-row {
-  width: 100%;
-  min-height: 44px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 0 12px;
-  border: 1px solid #2a2a2a;
-  border-radius: 12px;
-  background: #141414;
-  font-size: 14px;
-  font-weight: 700;
-  color: #a3a3a3;
-  text-align: left;
-}
-.lived-row .sw,
-.tile .sw,
-.tile-rec .sw {
+
+.tile .sw {
   width: 10px;
   height: 10px;
   border-radius: 2px;
   flex: none;
 }
-.lived-row[aria-pressed="true"] {
-  border-color: #8a8a8a;
-  box-shadow: 0 0 0 1px #8a8a8a inset;
-  color: #fff;
-}
+
 .tiles-h {
   margin: 14px 0 8px;
   font-size: 11px;
@@ -1787,25 +1707,7 @@ canvas.weeks {
 .tiles.has-focus .tile[aria-pressed="false"] {
   opacity: 0.45;
 }
-.tile-rec {
-  width: 100%;
-  min-height: 44px;
-  margin-top: 6px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 0 12px;
-  border: 1px dashed rgba(239, 68, 68, 0.6);
-  border-radius: 12px;
-  background: transparent;
-  font-size: 14px;
-  font-weight: 700;
-  text-align: left;
-}
-.tile-rec .sw {
-  border: 2px solid var(--red);
-  background: transparent;
-}
+
 .focus-line {
   margin: 10px 0 10px;
   min-height: 0;
@@ -1838,25 +1740,6 @@ canvas.weeks {
 }
 .wi-q b {
   font-family: "Space Grotesk", sans-serif;
-}
-.wi-range {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-top: 6px;
-}
-.wi-end {
-  flex: none;
-  font-size: 12px;
-  font-weight: 700;
-  color: var(--muted);
-}
-.recover {
-  font-size: 16px;
-}
-.recover b {
-  font-family: "Space Grotesk", sans-serif;
-  font-size: 22px;
 }
 
 /* más datos */
@@ -1983,42 +1866,150 @@ body.returning #vida {
 .res-awake:empty {
   display: none;
 }
-/* entrada del resultado: aparece por partes, la barra crece */
-.reveal-anim .result > * {
-  animation: upIn 0.55s ease both;
-}
-.reveal-anim .result > :nth-child(2) { animation-delay: 0.05s; }
-.reveal-anim .result > :nth-child(3) { animation-delay: 1.5s; }
-.reveal-anim .result > :nth-child(4) { animation-delay: 1.75s; }
-.reveal-anim .result > :nth-child(n + 5) { animation-delay: 2s; }
-.reveal-anim .result > .lifebar {
-  transform-origin: 0 50%;
-  animation: growX 1.2s cubic-bezier(0.2, 0.7, 0.2, 1) 1.9s both;
-}
-.reveal-anim .grid-card,
-.reveal-anim .whatif,
-.reveal-anim .adv {
-  animation: upIn 0.6s ease 2.1s both;
-}
-@keyframes upIn {
-  from { opacity: 0; transform: translateY(14px); }
-}
-@keyframes growX {
-  from { transform: scaleX(0); }
-}
+
 #mas {
   padding-bottom: 100px;
 }
 @media (prefers-reduced-motion: reduce) {
-  .hero-end,
-  .reveal-anim .result > *,
-  .reveal-anim .lifebar,
-  .reveal-anim .grid-card,
-  .reveal-anim .whatif,
-  .reveal-anim .adv {
+  .hero-end {
     animation: none;
   }
 }
 .start-sub {
   text-wrap: balance;
+}
+
+/* ═════════ v9 · revelación con la grilla + "¿y si usás menos?" ═════════ */
+.green {
+  color: #22c55e;
+}
+.res-tiles {
+  margin-top: 14px;
+  text-align: left;
+}
+.res-tiles .tiles-h {
+  margin-top: 0;
+}
+.res-key {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 4px;
+  margin: 12px 0 8px;
+}
+.lived-sw {
+  display: inline-block;
+  width: 9px;
+  height: 9px;
+  border-radius: 2px;
+  background: #3a3a3a;
+  border: 1px solid #555;
+}
+.result .focus-line {
+  margin: 10px 0 0;
+}
+/* durante la revelación solo se ven el número y la grilla; el resto aparece al final */
+#calc-out .res-sub,
+#calc-out .res-tiles,
+#calc-out .focus-line,
+#calc-out .row-info,
+#calc-out .facts,
+#calc-out .whatif,
+#calc-out .adv {
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+#calc-out.seq .res-sub,
+#calc-out.seq .res-tiles,
+#calc-out.seq .focus-line,
+#calc-out.seq .row-info,
+#calc-out.seq .facts,
+#calc-out.seq .whatif,
+#calc-out.seq .adv {
+  opacity: 0;
+  transform: translateY(12px);
+  pointer-events: none;
+}
+.facts {
+  text-align: center;
+}
+.facts .res-awake {
+  margin-top: 0;
+}
+.wi-q {
+  text-wrap: balance;
+}
+.whatif .row-in {
+  margin-top: 6px;
+}
+.wi-chips {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  margin: 4px 0 14px;
+}
+.wi-chip {
+  min-height: 44px;
+  padding: 0 4px;
+  font-size: 14px;
+}
+.wi-chip[aria-pressed="true"] {
+  background: #22c55e;
+  border-color: #22c55e;
+  color: #000;
+}
+.wi-chip:disabled {
+  opacity: 0.35;
+}
+.wi-big {
+  text-align: center;
+  line-height: 1;
+}
+.wi-big #wi-num {
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 700;
+  font-size: clamp(52px, 15vw, 76px);
+  letter-spacing: -0.04em;
+  font-variant-numeric: tabular-nums;
+}
+.wi-unit {
+  font-weight: 800;
+  font-size: 18px;
+}
+.wi-sub {
+  margin-top: 6px;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 600;
+  color: #e5e5e5;
+}
+.wi-key {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  margin: 14px 0 8px;
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--muted);
+}
+.wi-key .sw {
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+}
+.wi-key .sw + span + .sw {
+  margin-left: 10px;
+}
+.wi-row {
+  margin-top: 8px;
+  text-align: center;
+}
+@media (prefers-reduced-motion: reduce) {
+  #calc-out .res-sub,
+  #calc-out .res-tiles,
+  #calc-out .facts,
+  #calc-out .whatif,
+  #calc-out .adv {
+    transition: none;
+  }
 }

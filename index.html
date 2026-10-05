@@ -16,7 +16,7 @@
     <meta property="og:image" content="video/poster_es.jpg" />
     <link rel="preload" href="fonts/Inter-var.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="fonts/SpaceGrotesk-var.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="stylesheet" href="styles.css?v=8" />
+    <link rel="stylesheet" href="styles.css?v=9" />
   </head>
   <body>
     <header class="top" id="top">
@@ -33,8 +33,8 @@
 
     <!-- ───────── 1. INICIO + VIDEO ───────── -->
     <section id="hero" class="hero" aria-label="Video de introducción">
-      <video id="hero-video" playsinline preload="auto" poster="video/poster_es.jpg">
-        <source id="video-src" src="video/weeks_es.mp4" type="video/mp4" />
+      <video id="hero-video" playsinline preload="auto" poster="video/poster_es.jpg?v=9">
+        <source id="video-src" src="video/weeks_es.mp4?v=9" type="video/mp4" />
       </video>
 
       <!-- pantalla de inicio: el toque en "Empezar" habilita el sonido -->
@@ -50,7 +50,7 @@
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor" /></svg>
           <span id="start-txt" data-i18n="startBtn">Empezar</span>
         </button>
-        <p class="start-note" id="start-note"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z" fill="currentColor" /><path d="M16.5 8.5a5 5 0 0 1 0 7" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" /></svg><span data-i18n="startNote">Con sonido · 50 s</span></p>
+        <p class="start-note" id="start-note"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z" fill="currentColor" /><path d="M16.5 8.5a5 5 0 0 1 0 7" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" /></svg><span data-i18n="startNote">Con sonido · 30 s</span></p>
         <button type="button" class="start-skip" id="start-skip" data-i18n="startSkip">Saltar el video</button>
       </div>
 
@@ -120,46 +120,50 @@
 
         <div id="calc-out" hidden>
 
-        <!-- resultado -->
+        <!-- resultado: el número + tu vida en la grilla (se pinta como en el video) -->
         <div class="card result" id="life-head">
           <p class="res-lead" id="res-lead">De acá a los 80, el celular se lleva</p>
           <p class="res-big"><span id="r-phone" class="red">435</span> <span class="res-unit" data-i18n="resUnit">semanas</span></p>
           <p class="res-sub" id="r-human">8 años y 4 meses de tu vida</p>
-          <p class="res-awake" id="r-awake"></p>
-          <div class="lifebar" id="lifebar" aria-hidden="true"></div>
-          <p class="res-compare" id="r-compare"></p>
-          <div class="duel" id="duel" hidden></div>
-          <div class="feel" id="feel"></div>
-          <p class="sr-only" id="res-live" aria-live="polite"></p>
-          <button type="button" class="btn share-btn" data-i18n="share">Compartir mi grilla</button>
-        </div>
-
-        <!-- grilla -->
-        <div class="card grid-card" id="life-card">
-          <div class="gc-head">
-            <h3 class="h3" data-i18n="gridTitle">Tu vida en cuadraditos</h3>
-            <span class="gc-key"><span class="mini-sq"></span><span data-i18n="key1">= 1 semana</span> · <span data-i18n="key2">1 fila = 1 año</span></span>
+          <div class="res-tiles">
+            <p class="tiles-h" id="tiles-h"></p>
+            <div class="tiles" id="tiles" role="group"></div>
           </div>
-          <button type="button" class="lived-row" id="lived-row" data-cat="lived" aria-pressed="false"></button>
-          <p class="tiles-h" id="tiles-h"></p>
-          <div class="tiles" id="tiles" role="group"></div>
-          <button type="button" class="tile-rec" id="tile-rec" data-cat="phone" hidden></button>
-          <p class="focus-line" id="focus-line"></p>
+          <p class="gc-key res-key"><span class="mini-sq"></span><span data-i18n="key1">= 1 semana</span> · <span data-i18n="key2">1 fila = 1 año</span> · <span class="sw lived-sw"></span><span data-i18n="keyLived">vivido</span></p>
           <div class="grid-wrap" id="life-wrap">
             <canvas id="grid-life" class="weeks" aria-hidden="true"></canvas>
           </div>
+          <p class="focus-line" id="focus-line"></p>
           <p class="row-info" id="row-info-life"></p>
           <p class="sr-only" id="grid-summary"></p>
+          <p class="sr-only" id="res-live" aria-live="polite"></p>
         </div>
 
-        <div class="card whatif">
-          <p class="wi-q" id="wi-q">¿Y si bajás a 2 h?</p>
-          <div class="wi-range">
-            <span class="wi-end">0 h</span>
-            <input id="target" type="range" min="0" max="4" step="0.25" value="4" data-i18n-aria="ariaTarget" aria-label="Horas objetivo" />
-            <span class="wi-end" id="wi-max">4 h</span>
+        <div class="card facts">
+          <p class="res-awake" id="r-awake"></p>
+          <p class="res-compare" id="r-compare"></p>
+          <div class="duel" id="duel" hidden></div>
+          <div class="feel" id="feel"></div>
+          <button type="button" class="btn share-btn" data-i18n="share">Compartir mi grilla</button>
+        </div>
+
+        <!-- ¿y si usás menos? -->
+        <div class="card whatif" id="whatif">
+          <p class="wi-q" data-i18n="wiQ">¿Querés ver cuánto ahorrarías si usás menos?</p>
+          <div class="row-in">
+            <span class="ri-label" data-i18n="wiLabel">Bajar a</span>
+            <div class="st-row">
+              <button type="button" class="st-btn" data-step="target:-0.5" data-i18n-aria="ariaHMinus" aria-label="Restar media hora">−</button>
+              <label class="st-box"><input id="target" class="st-val green" type="number" inputmode="decimal" min="0" max="4" step="0.25" value="3" data-i18n-aria="ariaTarget" aria-label="Horas a las que bajarías" /><span class="st-unit">h</span></label>
+              <button type="button" class="st-btn" data-step="target:0.5" data-i18n-aria="ariaHPlus" aria-label="Sumar media hora">+</button>
+            </div>
           </div>
-          <p class="recover" id="recover"></p>
+          <div class="wi-chips" id="wi-chips" role="group"></div>
+          <p class="wi-big"><span id="wi-num" class="green">0</span> <span class="wi-unit" data-i18n="wiUnit">semanas que recuperás</span></p>
+          <p class="wi-sub" id="wi-sub"></p>
+          <p class="wi-key"><span class="sw" style="background:#ef4444"></span><span data-i18n="wiKeep">siguen en el celular</span><span class="sw" style="background:#22c55e"></span><span data-i18n="wiBack">las recuperás</span></p>
+          <div class="grid-wrap" id="wi-wrap"><canvas id="grid-wi" class="weeks" aria-hidden="true"></canvas></div>
+          <p class="small muted wi-row" data-i18n="wiRow">Tus semanas en el celular, de a 52: cada fila es 1 año entero.</p>
         </div>
 
         <details class="card adv">
@@ -241,7 +245,7 @@
     </div>
     <div id="toast" class="toast" role="status" aria-live="polite"></div>
 
-    <script src="data.js?v=8"></script>
-    <script src="app.js?v=8"></script>
+    <script src="data.js?v=9"></script>
+    <script src="app.js?v=9"></script>
   </body>
 </html>

@@ -1,8 +1,8 @@
 /* Cache de la app para que funcione offline. Al publicar: subir VERSION acá y el ?v= de index.html (styles/app/data). */
-const VERSION = "semanas-v8";
-const FILES = ["./", "index.html", "styles.css?v=8", "app.js?v=8", "data.js?v=8", "manifest.webmanifest",
+const VERSION = "semanas-v9";
+const FILES = ["./", "index.html", "styles.css?v=9", "app.js?v=9", "data.js?v=9", "manifest.webmanifest",
   "fonts/Inter-var.woff2", "fonts/SpaceGrotesk-var.woff2", "icons/icon-192.png", "icons/icon-512.png",
-  "video/poster_es.jpg", "video/poster_en.jpg"];
+  "video/poster_es.jpg?v=9", "video/poster_en.jpg?v=9"];
 
 self.addEventListener("install", (e) => {
   e.waitUntil(caches.open(VERSION).then((c) => c.addAll(FILES)).then(() => self.skipWaiting()));

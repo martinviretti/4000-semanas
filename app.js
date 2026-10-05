@@ -14,7 +14,7 @@
     es: {
       brand: "4.000 semanas", install: "Instalar", navCalc: "Mi cuenta", navMore: "Más datos",
       startTitle: "Este cuadrado es una semana de tu vida.", startSub: "¿Cuántas se lleva el celular?",
-      startBtn: "Empezar", startNote: "Con sonido · 50 s", startSkip: "Saltar el video",
+      startBtn: "Empezar", startNote: "Con sonido · 30 s", startSkip: "Saltar el video",
       friendTxt: (name, w) => `A ${name} el celular le lleva <b>${w}</b> semanas. ¿Y a vos?`, friendDefault: "tu amigo/a",
       skip: "Saltar", soundOn: "Activar sonido", soundOff: "Silenciar",
       endQ: "¿Te animás a hacer la cuenta con tu vida?", endSub: "Tu edad y tus horas de celular. Nada más.", endGo: "Hacer mi cuenta", endAgain: "Volver a ver el video",
@@ -31,19 +31,21 @@
       duelYou: "vos", feelHead: "Te quedan",
       feel: { summers: "veranos", cups: "Mundiales", sundays: "domingos" },
       feelPhone: (v, m) => (m > 0 ? `El celular se lleva ${v} veranos y ${m} ${m === 1 ? "Mundial" : "Mundiales"}.` : `El celular se lleva ${v} ${v === 1 ? "verano" : "veranos"}.`),
-      gridTitle: "Tu vida en cuadraditos",
+      seqLead: { total: (L) => `Tu vida, de 0 a ${L} años`, lived: () => "Ya viviste", sleep: () => "Vas a dormir", work: () => "Vas a trabajar", phone: () => "El celular se lleva" },
+      keyLived: "vivido",
+      wiQ: "¿Querés ver cuánto ahorrarías si usás menos?", wiLabel: "Bajar a", wiUnit: "semanas que recuperás",
+      wiSub: (hw, d) => `${hw} de vida · ${d} días por año`, wiZero: "Elegí a cuánto bajarías.",
+      wiKeep: "siguen en el celular", wiBack: "las recuperás", wiRow: "Tus semanas en el celular, de a 52: cada fila es 1 año entero.",
+      wiChips: { m30: "−30 min", m1: "−1 h", m2: "−2 h", half: "La mitad" },
       labels: { lived: "vivido", sleep: "dormir", work: "trabajo", phone: "celular", free: "libre" },
-      livedRow: (n) => `Ya viviste ${n} semanas`, tilesH: (n) => `Te quedan ${n} · tocá un color`,
-      recTile: (n, h) => `Recuperás ${n} si bajás a ${h}`,
+tilesH: (n) => `Te quedan ${n} · tocá un color`,
       focus: {
         lived: (hw) => `Vivido: ${hw}.`, sleep: (hw) => `Dormir: ${hw}.`, work: (hw) => `Trabajo: ${hw}.`,
         phone: (hw, k) => `Celular: ${hw}` + (k ? ` · 1 de cada ${k} semanas que te quedan.` : "."),
-        free: (hw) => `Libre: ${hw}. Lo único tuyo de verdad.`, rec: (hw) => `Si bajás, recuperás ${hw}.`,
+        free: (hw) => `Libre: ${hw}. Lo único tuyo de verdad.`,
       },
       you: (a) => `Vos hoy · ${a}`, youShort: (a) => `Vos · ${a}`,
       tapRow: "Tocá una fila para ver ese año.", rowLived: (r) => `<b>${r} años</b>: ya vivido.`, rowNow: (r) => `Este año (${r})`, rowAge: (r) => `${r} años`,
-      whatifQ: (h) => `¿Y si bajás a <b>${h}</b>?`, recoverLine: (n, hw) => `Recuperás <b>${n}</b> semanas: ${hw}. Son los ▢ de la grilla.`,
-      recoverZero: "Mové la barra para ver cuánto recuperás.",
       adv: "Cambiar supuestos", life: "Esperanza de vida", sleep: "Horas de sueño", work: "Horas de trabajo / semana", retire: "Te jubilás a los",
       advNote: "Trabajo: 48 semanas por año hasta jubilarte.", overflow: "No te queda tiempo libre. Revisá sueño y trabajo.",
       share: "Compartir mi grilla", shareShort: "Compartir", stickyTxt: "semanas en el celular",
@@ -107,7 +109,7 @@
     en: {
       brand: "4,000 weeks", install: "Install", navCalc: "My numbers", navMore: "More data",
       startTitle: "This square is one week of your life.", startSub: "How many does your phone take?",
-      startBtn: "Start", startNote: "With sound · 50 s", startSkip: "Skip the video",
+      startBtn: "Start", startNote: "With sound · 30 s", startSkip: "Skip the video",
       friendTxt: (name, w) => `${name === "your friend" ? "Your friend" : name}'s phone takes <b>${w}</b> weeks of their life. What about yours?`, friendDefault: "your friend",
       skip: "Skip", soundOn: "Turn sound on", soundOff: "Mute",
       endQ: "Dare to run the numbers on your own life?", endSub: "Your age and your phone hours. That's it.", endGo: "Do my numbers", endAgain: "Watch the video again",
@@ -124,19 +126,21 @@
       duelYou: "you", feelHead: "You have left",
       feel: { summers: "summers", cups: "World Cups", sundays: "Sundays" },
       feelPhone: (v, m) => (m > 0 ? `Your phone takes ${v} summers and ${m} World ${m === 1 ? "Cup" : "Cups"}.` : `Your phone takes ${v} ${v === 1 ? "summer" : "summers"}.`),
-      gridTitle: "Your life in squares",
+      seqLead: { total: (L) => `Your life, 0 to ${L}`, lived: () => "You've lived", sleep: () => "You'll sleep", work: () => "You'll work", phone: () => "Your phone takes" },
+      keyLived: "lived",
+      wiQ: "Want to see how much you'd get back by using it less?", wiLabel: "Cut down to", wiUnit: "weeks you get back",
+      wiSub: (hw, d) => `${hw} of life · ${d} days a year`, wiZero: "Pick how far you'd cut down.",
+      wiKeep: "still on your phone", wiBack: "you get back", wiRow: "Your phone weeks, 52 per row: each row is 1 full year.",
+      wiChips: { m30: "−30 min", m1: "−1 h", m2: "−2 h", half: "Half" },
       labels: { lived: "lived", sleep: "sleep", work: "work", phone: "phone", free: "free" },
-      livedRow: (n) => `You've lived ${n} weeks`, tilesH: (n) => `${n} left · tap a color`,
-      recTile: (n, h) => `You get back ${n} if you cut to ${h}`,
+tilesH: (n) => `${n} left · tap a color`,
       focus: {
         lived: (hw) => `Lived: ${hw}.`, sleep: (hw) => `Sleep: ${hw}.`, work: (hw) => `Work: ${hw}.`,
         phone: (hw, k) => `Phone: ${hw}` + (k ? ` · 1 in every ${k} weeks you have left.` : "."),
-        free: (hw) => `Free: ${hw}. The only part that's truly yours.`, rec: (hw) => `If you cut down, you get back ${hw}.`,
+        free: (hw) => `Free: ${hw}. The only part that's truly yours.`,
       },
       you: (a) => `You today · ${a}`, youShort: (a) => `You · ${a}`,
       tapRow: "Tap a row to see that year.", rowLived: (r) => `<b>Age ${r}</b>: already lived.`, rowNow: (r) => `This year (${r})`, rowAge: (r) => `Age ${r}`,
-      whatifQ: (h) => `What if you cut down to <b>${h}</b>?`, recoverLine: (n, hw) => `You get back <b>${n}</b> weeks: ${hw}. They're the ▢ in the grid.`,
-      recoverZero: "Move the slider to see what you get back.",
       adv: "Change assumptions", life: "Life expectancy", sleep: "Hours of sleep", work: "Work hours / week", retire: "You retire at",
       advNote: "Work: 48 weeks a year until you retire.", overflow: "No free time left. Check sleep and work.",
       share: "Share my grid", shareShort: "Share", stickyTxt: "weeks on your phone",
@@ -351,7 +355,7 @@
     life: $("#life"), sleep: $("#sleep"), work: $("#work"), retire: $("#retire"),
   };
   const sticky = $("#sticky"), head = $("#life-head"), top = $("#top");
-  let model = null, exampleMode = true, shown = false, revealing = false, focusCat = null, selLife = -1, tilesTouched = false;
+  let model = null, exampleMode = true, shown = false, focusCat = null, selLife = -1, tilesTouched = false;
   const CAT_OF = { 1: "lived", 2: "sleep", 3: "work", 4: "phone", 6: "rec", 5: "free" };
   const lifelineAt = (age) => D.lifeline.find((s) => age >= s.from && age <= s.to) || null;
 
@@ -376,12 +380,17 @@
       if (k === 2) return { fill: COL.sleep };
       if (k === 3) return { fill: COL.work };
       if (k === 4) return { fill: COL.phone };
-      if (k === 6) return { fill: COL.phone, hollow: true };
+      if (k === 6) return { fill: COL.phone };
       return { fill: COL.free, alpha: 0.92 };
     };
     const inFocus = (k) => !focusCat || (focusCat === "phone" ? k === 4 || k === 6 : CAT_OF[k] === focusCat);
     const cellAt = (r, c) => {
-      const k = m.cat[r * COLS + c];
+      const i = r * COLS + c, k = m.cat[i];
+      if (seq) {
+        // revelación: cada categoría se pinta en orden de lectura, como en el video
+        const kk = k === 6 ? 4 : k;
+        return k !== 5 && seq.p[kk] > 0 && seq.rk[i] <= seq.p[kk] ? base(k) : base(5);
+      }
       const s = base(k);
       if (!inFocus(k)) s.alpha = (s.alpha ?? 1) * 0.13;
       return s;
@@ -421,14 +430,10 @@
     $$("#presets .pre").forEach((b) => b.setAttribute("aria-pressed", String(parseFloat(b.dataset.h) === m.H)));
     // resultado
     $("#res-lead").textContent = t().resLead(m.L);
-    countResult(m.phone, revealing ? 1600 : 420);
+    countResult(m.phone);
     $("#r-human").textContent = t().resHuman(humanW(m.phone));
     const awakeH = 24 - clamp(parseFloat(el.sleep.value) || 0, 0, 16);
     $("#r-awake").innerHTML = m.H > 0 ? t().awake(fmtInt(Math.min(100, (m.H / awakeH) * 100)), fmtInt((m.H * 365) / 24)) : "";
-    const remain = Math.max(1, m.remaining);
-    $("#lifebar").innerHTML = [["sleep", m.sleep], ["work", m.work], ["phone", m.phone], ["free", m.free]]
-      .filter(([, v]) => v > 0)
-      .map(([k, v]) => `<i style="width:${(v / remain) * 100}%;background:${CAT_COLOR[k]}"></i>`).join("");
     const lf = lifelineAt(m.A);
     if (lf && lf.h != null) {
       const d = m.H - lf.h;
@@ -449,12 +454,8 @@
     $("#sticky-txt").textContent = t().stickyTxt;
     // fichas de la grilla
     renderTiles();
-    // ¿y si bajás?
-    el.target.max = String(m.H);
-    $("#wi-max").textContent = humanH(m.H);
-    $("#wi-q").innerHTML = t().whatifQ(humanH(m.H2));
-    $("#recover").innerHTML = m.recovered > 0 ? t().recoverLine(fmtInt(m.recovered), humanW(m.recovered)) : t().recoverZero;
-    syncRanges();
+    // ¿y si usás menos?
+    renderSave();
     if (selLife >= m.L) selLife = -1;
     renderRowLife();
     $("#grid-summary").textContent = t().gridSummary(m.A, m.L, fmtInt(m.sleep), fmtInt(m.work), fmtInt(m.phone), fmtInt(m.free));
@@ -463,9 +464,6 @@
 
   function renderTiles() {
     const m = model;
-    const lr = $("#lived-row");
-    lr.innerHTML = `<span class="sw" style="background:${COL.lived}"></span>${t().livedRow(fmtInt(m.lived))}`;
-    lr.setAttribute("aria-pressed", String(focusCat === "lived"));
     $("#tiles-h").textContent = t().tilesH(fmtInt(m.remaining));
     const tiles = [["sleep", m.sleep], ["work", m.work], ["phone", m.phone], ["free", m.free]];
     $("#tiles").innerHTML = tiles.map(([k, v]) => {
@@ -473,18 +471,14 @@
       const st = on ? `background:${CAT_COLOR[k]}2e;border-color:${CAT_COLOR[k]}` : "";
       return `<button type="button" class="tile" data-cat="${k}" aria-pressed="${on}" style="${st}"><span class="sw" style="background:${CAT_COLOR[k]}"></span><b>${fmtInt(v)}</b><span>${t().labels[k]}</span></button>`;
     }).join("");
-    $("#tiles").classList.toggle("has-focus", !!focusCat && focusCat !== "lived" && focusCat !== "rec");
-    const rec = $("#tile-rec");
-    rec.hidden = !(m.recovered > 0);
-    rec.innerHTML = `<span class="sw"></span>${t().recTile(fmtInt(m.recovered), humanH(m.H2))}`;
-    rec.setAttribute("aria-pressed", String(focusCat === "rec"));
+    $("#tiles").classList.toggle("has-focus", !!focusCat && focusCat !== "lived");
     renderFocusLine();
   }
 
   function renderFocusLine() {
     const m = model, box = $("#focus-line");
     if (!focusCat) { box.textContent = ""; return; }
-    const v = { lived: m.lived, sleep: m.sleep, work: m.work, phone: m.phone, free: m.free, rec: m.recovered }[focusCat];
+    const v = { lived: m.lived, sleep: m.sleep, work: m.work, phone: m.phone, free: m.free }[focusCat];
     const k = focusCat === "phone" && m.phone > 0 ? Math.round(m.remaining / m.phone) : 0;
     box.innerHTML = t().focus[focusCat](humanW(v), k);
   }
@@ -507,8 +501,50 @@
     box.innerHTML = `<b>${r === m.A ? t().rowNow(r) : t().rowAge(r)}</b>: ${dot("sleep")}${c.s} ${L.sleep} · ${dot("work")}${c.w} ${L.work} · ${dot("phone")}${c.p + c.rec} ${L.phone} · ${dot("free")}${c.f} ${L.free}`;
   }
 
-  function syncRanges() {
-    $$('input[type="range"]').forEach((r) => r.style.setProperty("--p", ((r.value - r.min) / (r.max - r.min || 1)) * 100 + "%"));
+  // ───────────────── ¿y si usás menos? ─────────────────
+  const GREEN = "#22c55e";
+  let saveShown = null, saveAnim = 0;
+  /* tus semanas de celular de a 52 por fila (cada fila = 1 año entero); las recuperadas en verde */
+  function drawSave(rec) {
+    const cv = $("#grid-wi"), P = model.phone;
+    const dpr = window.devicePixelRatio || 1, w = cv.clientWidth || 320;
+    const pitch = w / COLS, cell = pitch * 0.78, h = Math.ceil(Math.max(1, Math.ceil(P / COLS)) * pitch);
+    if (cv.width !== Math.round(w * dpr) || cv.height !== Math.round(h * dpr)) {
+      cv.width = Math.round(w * dpr);
+      cv.height = Math.round(h * dpr);
+      cv.style.height = h + "px";
+    }
+    const g = cv.getContext("2d");
+    g.setTransform(dpr, 0, 0, dpr, 0, 0);
+    g.clearRect(0, 0, w, h);
+    const keep = P - rec;
+    for (let i = 0; i < P; i++) {
+      g.fillStyle = i < keep ? COL.phone : GREEN;
+      g.fillRect((i % COLS) * pitch, Math.floor(i / COLS) * pitch, cell, cell);
+    }
+  }
+  const SAVE_CHIPS = { m30: (H) => H - 0.5, m1: (H) => H - 1, m2: (H) => H - 2, half: (H) => H / 2 };
+  function renderSave() {
+    const m = model, card = $("#whatif");
+    card.hidden = !(m.H > 0);
+    if (card.hidden) return;
+    el.target.max = String(m.H);
+    $("#wi-chips").innerHTML = Object.entries(SAVE_CHIPS).map(([k, f]) => {
+      const v = Math.max(0, f(m.H));
+      return `<button type="button" class="pre wi-chip" data-h="${v}" aria-pressed="${v === m.H2}"${f(m.H) < 0 ? " disabled" : ""}>${t().wiChips[k]}</button>`;
+    }).join("");
+    $("#wi-sub").textContent = m.recovered > 0 ? t().wiSub(humanW(m.recovered), fmtInt(((m.H - m.H2) * 365) / 24)) : t().wiZero;
+    // el número y los cuadrados verdes van del valor anterior al nuevo
+    const to = m.recovered, from = saveShown == null || reducedMotion() ? to : saveShown, t0 = performance.now(), id = ++saveAnim;
+    saveShown = to;
+    const step = (now) => {
+      if (id !== saveAnim) return;
+      const pr = Math.min(1, (now - t0) / 450), v = Math.round(from + (to - from) * (1 - Math.pow(1 - pr, 3)));
+      $("#wi-num").textContent = fmtInt(v);
+      drawSave(v);
+      if (pr < 1) requestAnimationFrame(step);
+    };
+    step(t0);
   }
 
   // ───────────────── link compartido: "a tu amigo/a le lleva X" ─────────────────
@@ -740,8 +776,8 @@
     if (pr && pr.then) pr.then(() => ($("#hero-play").hidden = true)).catch(() => ($("#hero-play").hidden = false));
   }
   function setVideoLang() {
-    video.poster = `video/poster_${LANG}.jpg`;
-    const src = `video/weeks_${LANG}.mp4`;
+    video.poster = `video/poster_${LANG}.jpg?v=9`;
+    const src = `video/weeks_${LANG}.mp4?v=9`;
     if ($("#video-src").getAttribute("src") !== src) {
       $("#video-src").setAttribute("src", src);
       video.load();
@@ -841,24 +877,76 @@
 
   // ───────────────── revelar el resultado ─────────────────
   const saveCalc = () => { if (shown) localStorage.setItem("calc", JSON.stringify({ a: el.age.value, h: el.hours.value })); };
+  // la grilla se pinta por partes (vivido, dormir, trabajo, celular) mientras el número cuenta cada una
+  let seq = null, seqId = 0;
+  function rankModel(m) {
+    const key = (k) => (k === 6 ? 4 : k), tot = {}, cnt = {}, rk = new Float32Array(m.cat.length);
+    for (const k of m.cat) tot[key(k)] = (tot[key(k)] || 0) + 1;
+    m.cat.forEach((k, i) => { const kk = key(k); cnt[kk] = (cnt[kk] || 0) + 1; rk[i] = cnt[kk] / tot[kk]; });
+    return rk;
+  }
+  const SEQ = [["total", 0, 600], [1, 700, 1400], [2, 1550, 2250], [3, 2400, 3000], [4, 3150, 4200]]; // [parte, desde, hasta] en ms
+  const SEQ_NAME = { total: "total", 1: "lived", 2: "sleep", 3: "work", 4: "phone" };
+  function playSequence() {
+    const m = model, id = ++seqId;
+    const vals = { total: m.L * 52, 1: m.lived, 2: m.sleep, 3: m.work, 4: m.phone };
+    const colors = { total: "#ffffff", 1: "#a3a3a3", 2: COL.sleep, 3: COL.work, 4: COL.phone };
+    const steps = SEQ.filter(([k]) => vals[k] > 0 || k === "total");
+    const endAt = steps[steps.length - 1][2] + 250, t0 = performance.now(), num = $("#r-phone"), lead = $("#res-lead");
+    const ease = (x) => 1 - Math.pow(1 - x, 3);
+    let cur = null;
+    const tick = (now) => {
+      if (id !== seqId) return;
+      const ms = now - t0;
+      for (const [k, a, b] of steps) {
+        const pr = clamp((ms - a) / (b - a), 0, 1);
+        if (k === "total") seq.reveal = ease(pr);
+        else seq.p[k] = pr;
+      }
+      const active = steps.filter(([, a]) => ms >= a).pop();
+      if (active) {
+        const [k, a, b] = active;
+        if (cur !== k) { cur = k; lead.textContent = t().seqLead[SEQ_NAME[k]](m.L); num.style.color = colors[k]; }
+        num.textContent = fmtInt(Math.round(vals[k] * ease(clamp((ms - a) / (b - a), 0, 1))));
+      }
+      drawLife(seq.reveal);
+      if (ms < endAt) requestAnimationFrame(tick);
+      else endSequence();
+    };
+    requestAnimationFrame(tick);
+    setTimeout(() => { if (id === seqId) endSequence(); }, endAt + 1500); // por si la pestaña no dibuja (en segundo plano)
+  }
+  function endSequence() {
+    if (!seq) return;
+    seqId++;
+    seq = null;
+    $("#calc-out").classList.remove("seq");
+    $("#r-phone").style.color = "";
+    $("#res-lead").textContent = t().resLead(model.L);
+    resShown = model.phone;
+    $("#r-phone").textContent = fmtInt(model.phone);
+    drawLife(1);
+  }
   function revealResult(animate = true) {
     shown = true;
     exampleMode = false;
     $("#calc-out").hidden = false;
     $("#reveal").hidden = true;
-    const out = $("#calc-out");
-    out.classList.remove("reveal-anim");
-    if (animate && !reducedMotion()) {
-      void out.offsetWidth;
-      out.classList.add("reveal-anim");
-      resShown = 0; // el número sube desde 0
-    }
-    revealing = animate;
+    revealed.life = 1;
     renderLife();
-    revealing = false;
     renderVersus();
     saveCalc();
-    if (animate) smoothScrollTo(head.getBoundingClientRect().top + window.scrollY - 64, 900);
+    if (animate && !reducedMotion()) {
+      $("#calc-out").classList.add("seq");
+      seq = { p: { 1: 0, 2: 0, 3: 0, 4: 0 }, rk: rankModel(model), reveal: 0 };
+      $("#res-lead").textContent = t().seqLead.total(model.L);
+      $("#r-phone").textContent = "0";
+      $("#r-phone").style.color = "#ffffff";
+      drawLife(0);
+      smoothScrollTo(head.getBoundingClientRect().top + window.scrollY - 64, 800);
+      const sid = seqId;
+      setTimeout(() => { if (sid === seqId && seq) playSequence(); }, 700);
+    } else drawLife(1);
     requestAnimationFrame(onScroll);
   }
   $("#reveal").addEventListener("click", () => revealResult(true));
@@ -869,10 +957,12 @@
     exampleMode = false;
   };
   const onHoursChanged = () => {
-    el.target.max = el.hours.value;
-    el.target.value = el.hours.value; // el "¿y si bajás?" arranca sin recuperar nada
+    const H = parseFloat(el.hours.value) || 0;
+    el.target.max = String(H);
+    el.target.value = String(Math.max(0, H - 1)); // "¿y si usás menos?" arranca con una hora menos
   };
   const rerender = () => {
+    endSequence();
     saveCalc();
     renderLife();
     renderVersus();
@@ -892,6 +982,13 @@
   el.hours.addEventListener("input", () => { leaveExample(); onHoursChanged(); rerender(); });
   el.hours.addEventListener("change", () => { el.hours.value = String(clamp(parseFloat(el.hours.value) || 0, 0, 16)); onHoursChanged(); rerender(); });
   el.target.addEventListener("input", rerender);
+  el.target.addEventListener("change", () => { el.target.value = String(clamp(parseFloat(el.target.value) || 0, 0, parseFloat(el.hours.value) || 0)); rerender(); });
+  $("#wi-chips").addEventListener("click", (e) => {
+    const b = e.target.closest(".wi-chip");
+    if (!b || b.disabled) return;
+    el.target.value = b.dataset.h;
+    rerender();
+  });
   ["life", "sleep", "work", "retire"].forEach((k) => el[k].addEventListener("input", rerender));
   $("#presets").addEventListener("click", (e) => {
     const b = e.target.closest(".pre");
@@ -908,8 +1005,6 @@
     if (navigator.vibrate && (!navigator.userActivation || navigator.userActivation.hasBeenActive)) navigator.vibrate(10);
     setFocus(b.dataset.cat);
   });
-  $("#lived-row").addEventListener("click", () => { tilesTouched = true; setFocus("lived"); });
-  $("#tile-rec").addEventListener("click", () => { tilesTouched = true; setFocus("rec"); });
   $("#grid-life").addEventListener("click", (e) => {
     const r = rowFromEvent(e.currentTarget, e, model.L);
     selLife = selLife === r ? -1 : r;
@@ -1064,18 +1159,10 @@
     if (!scrollQueued) { scrollQueued = true; requestAnimationFrame(onScroll); }
   }, { passive: true });
 
-  // la primera vez que se ve la grilla: cascada y una demo de 1,2 s de "tocá un color"
+  // la primera vez que se ve la grilla de datos: cascada
   const gio = new IntersectionObserver((entries) => {
     entries.forEach((en) => {
       if (!en.isIntersecting) return;
-      if (en.target.id === "grid-life") cascade("life", drawLife, () => {
-        if (tilesTouched || reducedMotion() || focusCat) return;
-        setTimeout(() => {
-          if (tilesTouched || focusCat) return;
-          setFocus("phone");
-          setTimeout(() => { if (!tilesTouched && focusCat === "phone") setFocus("phone"); }, 1200);
-        }, 300);
-      });
       if (en.target.id === "grid-data") cascade("data", drawData);
       gio.unobserve(en.target);
     });
@@ -1086,8 +1173,9 @@
     const w = $("main").clientWidth;
     if (Math.abs(w - lastW) > 2) {
       lastW = w;
-      if (model && revealed.life >= 1) drawLife(1);
+      if (model && revealed.life >= 1) drawLife(seq ? seq.reveal : 1);
       if (model && revealed.data >= 1) drawData(1);
+      if (model && shown && saveShown != null) drawSave(saveShown);
     }
   }).observe(document.body);
 
@@ -1130,7 +1218,6 @@
   applyLang();
   if (saved) revealResult(false);
   onScroll();
-  gio.observe($("#grid-life"));
   gio.observe($("#grid-data"));
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => { if (revealed.life >= 1) drawLife(1); if (revealed.data >= 1) drawData(1); });
 })();
