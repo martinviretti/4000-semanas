@@ -5,20 +5,27 @@
 App estática, instalable en el celular, con la estética de los videos *4,000 Weeks* (parte 1 y 2).
 Sin build ni backend: HTML + CSS + JS. Funciona offline después de la primera visita.
 
-## Secciones
+## Estructura (una historia en pasos)
 
-1. **Tu vida**: edad + horas de celular por día → grilla de 80 × 52 semanas: vividas, dormir,
-   trabajo, celular y libres. Con los supuestos por defecto (30 años, 4 h/día) da exactamente los
-   números del video: 1.560 / 867 / 400 / 435 / 898. Incluye "¿y si bajás a…?" (semanas que
-   recuperás), comparación con tu franja de edad, guía para ver el tiempo de pantalla en iPhone,
-   Android, Samsung y Xiaomi, y un botón de compartir con link precargado (`?edad=30&h=4`).
-2. **Según los datos**: una vida típica de 80 años donde cada etapa usa el celular que hoy usa esa
-   edad (≈ 498 semanas, 9,6 años), con tarjetas por etapa (niños, preadolescentes, adolescentes,
-   adultos jóvenes, adultos, adultos mayores) que resaltan sus años en la grilla y muestran cada
-   cifra con métrica, región, año, fuente y nivel de verificación. Más Argentina y una guía de lectura.
-3. **Cómo cambió**: gráfico 1975–2025 con 4 series que **no se suman** (TV por hogar, TV por
-   persona, celular por persona, internet), y "un día en cuadraditos" para hace 50, 40, 30, 20 y
-   10 años, y hoy.
+0. **Intro**: "Una vida de 80 años son 4.160 semanas", clave visual de cómo leer los cuadrados
+   (1 cuadrado = 1 semana · 1 fila de 52 = 1 año · 80 filas = una vida) y el **video de la parte 1**
+   (`video/weeks_es.mp4` / `weeks_en.mp4`, 720×1280, ~3,5 MB, según el idioma). Se puede saltar; al
+   terminar baja solo al paso 1 y la próxima visita aparece compacto ("Ver el video otra vez").
+1. **Tu vida**: edad y horas con botones –/+ (y slider de horas), resultado visible sin scrollear,
+   grilla con marcador "Vos hoy" que late, explicación de qué es cada fila, y **tocar una fila** muestra
+   ese año en detalle (semanas durmiendo / trabajando / celular / libres). Con 30 años y 4 h da los
+   números del video: 1.560 / 867 / 400 / 435 / 898. "¿Y si bajás a…?", guía de tiempo de pantalla
+   (iPhone, Android, Samsung, Xiaomi) y supuestos ajustables.
+2. **Por edad**: "Vos vs. la gente de tu edad", una vida típica de 80 años (≈ 498 semanas, 9,6 años)
+   con tu marcador y detalle por fila, y tarjetas por etapa en lenguaje simple (una frase + semanas
+   de esa etapa); métrica, fuente y verificación quedan en "Ver fuentes y detalles".
+3. **Antes y ahora**: un día de 24 cuadrados (1 = 1 hora) por década, de 1975 a hoy, todas a la vista:
+   TV por hogar (rayado), TV por persona (blanco) y celular (rojo). El gráfico con todas las series
+   queda plegado como detalle.
+
+Extras: barra fija con tu resultado al bajar, y **Compartir** genera una imagen vertical 1080×1920
+(tu grilla + número + link) lista para historias; si el navegador no permite compartir archivos, la
+descarga y copia el link.
 
 ## Datos
 

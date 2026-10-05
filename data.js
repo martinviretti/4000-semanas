@@ -100,13 +100,14 @@ window.APP_DATA = {
     { id: "internet", color: "#3b82f6", region: "global", points: [[2015, 6.33, "gwiConn", "p"], [2024, 6.63, "gwi", "p"]] },
   ],
 
-  /* "Un día" por década: la mejor medición por persona disponible (hogar solo cuando no hay otra). */
-  decades: [
-    { year: 1975, items: [{ type: "tvHome", h: 6.18, src: "nielsen82", verif: "p" }], phone: "none" },
-    { year: 1985, items: [{ type: "tvHome", h: 7.17, src: "nielsen00", verif: "p" }], phone: "none" },
-    { year: 1995, items: [{ type: "tvHome", h: 7.28, src: "nielsen00", verif: "p" }, { type: "tvPersonNielsen", h: 4.03, src: "nielsen00", verif: "d", yearNote: 1999 }], phone: "none" },
-    { year: 2005, items: [{ type: "tvPerson", h: 2.58, src: "atus05", verif: "p" }, { type: "tvPersonNielsen", h: 4.58, src: "nielsen06p", verif: "s" }], phone: "basic" },
-    { year: 2015, items: [{ type: "tvPerson", h: 2.8, src: "atus15", verif: "p" }, { type: "phone", h: 1.52, src: "emk15", verif: "p" }, { type: "internet", h: 6.33, src: "gwiConn", verif: "p", region: "global" }] },
-    { year: 2025, items: [{ type: "tvPerson", h: 2.61, src: "atusNow", verif: "p" }, { type: "phone", h: 4.13, src: "emk25", verif: "s" }, { type: "internet", h: 6.63, src: "gwi", verif: "p", region: "global", yearNote: 2024 }] },
+  /* "Antes y ahora": un día de 24 h por década (EE.UU.). Hasta 2005 solo hay TV por HOGAR (rayado);
+     2005 muestra las dos mediciones juntas para que se vea la diferencia de método. */
+  overview: [
+    { year: 1975, strips: [{ type: "tvHome", h: 6.18, src: "nielsen82", verif: "p" }], phone: "none" },
+    { year: 1985, strips: [{ type: "tvHome", h: 7.17, src: "nielsen00", verif: "p" }], phone: "none" },
+    { year: 1995, strips: [{ type: "tvHome", h: 7.28, src: "nielsen00", verif: "p" }], phone: "none" },
+    { year: 2005, strips: [{ type: "tvHome", h: 8.23, src: "nielsen06", verif: "s" }, { type: "tvPerson", h: 2.58, src: "atus05", verif: "p" }], phone: "basic" },
+    { year: 2015, strips: [{ type: "tvPerson", h: 2.8, src: "atus15", verif: "p" }, { type: "phone", h: 1.52, src: "emk15", verif: "p" }] },
+    { year: 2025, strips: [{ type: "tvPerson", h: 2.61, src: "atusNow", verif: "p" }, { type: "phone", h: 4.13, src: "emk25", verif: "s" }] },
   ],
 };
