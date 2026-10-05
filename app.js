@@ -115,7 +115,7 @@
       ],
       startTitle: "Este cuadrado es una semana de tu vida.", startSub: "¿Cuántas te quedan? ¿Y cuántas se lleva el celular?",
       startBtn: "Empezar", startNote: "Con sonido · menos de 1 minuto", startSkip: "Ver sin el video",
-      next: "Siguiente", nextFinal: "Hacer mi cálculo", storySkip: "Ir directo a mi cálculo",
+      next: "Siguiente", nextFinal: "Hacer mi cálculo", swipeHint: "Deslizá o tocá Siguiente", storySkip: "Ir directo a mi cálculo",
       qAge: "¿Cuántos años tenés?", qHours: "¿Cuántas horas por día usás el celular?",
       resLead: "Si seguís así, vas a pasar", resUnit: "semanas", resSub: "mirando el celular",
       human: (y, m) => (y > 0 ? `${y} ${y === 1 ? "año" : "años"}` : "") + (y > 0 && m > 0 ? " y " : "") + (m > 0 ? `${m} ${m === 1 ? "mes" : "meses"}` : "") || "menos de un mes",
@@ -240,7 +240,7 @@
       ],
       startTitle: "This square is one week of your life.", startSub: "How many do you have left? And how many does your phone take?",
       startBtn: "Start", startNote: "With sound · under 1 minute", startSkip: "Skip the video",
-      next: "Next", nextFinal: "Run my numbers", storySkip: "Go straight to my numbers",
+      next: "Next", nextFinal: "Run my numbers", swipeHint: "Swipe or tap Next", storySkip: "Go straight to my numbers",
       qAge: "How old are you?", qHours: "How many hours a day do you use your phone?",
       resLead: "If you keep this up, you'll spend", resUnit: "weeks", resSub: "looking at your phone",
       human: (y, m) => (y > 0 ? `${y} ${y === 1 ? "year" : "years"}` : "") + (y > 0 && m > 0 ? " and " : "") + (m > 0 ? `${m} ${m === 1 ? "month" : "months"}` : "") || "less than a month",
@@ -910,6 +910,7 @@
     countTo($("#cap-num"), STEP_NUM[i], STEP_COLOR[i]);
     $$("#story-progress i").forEach((d, k) => { d.classList.toggle("done", k < i); d.classList.toggle("on", k === i); });
     $("#story-back").disabled = i === 0;
+    if (i > 0) $("#swipe-hint").classList.add("off");
     const nb = $("#story-next");
     nb.classList.toggle("final", i === LAST);
     $("#story-next-txt").textContent = i === LAST ? t().nextFinal : t().next;
@@ -926,15 +927,57 @@
     const r = e.currentTarget.getBoundingClientRect();
     (e.clientX - r.left < r.width * 0.3 ? storyBack : storyNext)();
   });
-  // deslizar horizontal
-  let sx = null, sy = null;
-  $("#story").addEventListener("touchstart", (e) => { sx = e.touches[0].clientX; sy = e.touches[0].clientY; }, { passive: true });
-  $("#story").addEventListener("touchend", (e) => {
-    if (sx == null) return;
-    const dx = e.changedTouches[0].clientX - sx, dy = e.changedTouches[0].clientY - sy;
-    if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy) * 1.5) (dx < 0 ? storyNext : storyBack)();
-    sx = null;
-  }, { passive: true });
+  // deslizar con el dedo (o arrastrar con el mouse): el contenido sigue al gesto y, al soltar,
+  // pasa al paso siguiente/anterior si el gesto fue suficiente
+  const SWIPE_MOVERS = () => [$("#story-tap"), $(".story-caption")];
+  let drag = null, dragMoved = false;
+  const setDragX = (dx, animate) => SWIPE_MOVERS().forEach((n) => {
+    n.style.transition = animate ? "transform .28s ease, opacity .28s ease" : "none";
+    n.style.transform = dx ? `translateX(${dx}px)` : "";
+    n.style.opacity = dx ? String(Math.max(0.35, 1 - Math.abs(dx) / 500)) : "";
+  });
+  function slideTo(dir) {
+    // sale hacia un lado y el nuevo paso entra desde el otro
+    const w = Math.min(window.innerWidth, 560);
+    setDragX(-dir * w * 0.6, true);
+    setTimeout(() => {
+      dir > 0 ? storyNext() : storyBack();
+      setDragX(dir * w * 0.4, false);
+      requestAnimationFrame(() => requestAnimationFrame(() => setDragX(0, true)));
+    }, 180);
+  }
+  const story$ = $("#story");
+  story$.addEventListener("pointerdown", (e) => {
+    if (e.target.closest("button, a")) return;
+    drag = { x: e.clientX, y: e.clientY, id: e.pointerId, horizontal: null };
+    dragMoved = false;
+  });
+  story$.addEventListener("pointermove", (e) => {
+    if (!drag || e.pointerId !== drag.id) return;
+    const dx = e.clientX - drag.x, dy = e.clientY - drag.y;
+    if (drag.horizontal === null && (Math.abs(dx) > 8 || Math.abs(dy) > 8)) drag.horizontal = Math.abs(dx) > Math.abs(dy);
+    if (!drag.horizontal) return;
+    dragMoved = true;
+    // en los extremos (primer/último paso) el gesto se frena, como en las historias
+    const atEdge = (dx > 0 && sStep === 0) || (dx < 0 && sStep === LAST);
+    setDragX(atEdge ? dx * 0.25 : dx, false);
+  });
+  const endDrag = (e) => {
+    if (!drag || (e.pointerId !== undefined && e.pointerId !== drag.id)) return;
+    const dx = e.clientX - drag.x;
+    const horizontal = drag.horizontal;
+    drag = null;
+    if (!horizontal) return;
+    if (dx < -60 && sStep < LAST) slideTo(1);
+    else if (dx > 60 && sStep > 0) slideTo(-1);
+    else if (dx < -60 && sStep === LAST) { setDragX(0, true); goCalc(); }
+    else setDragX(0, true);
+  };
+  story$.addEventListener("pointerup", endDrag);
+  story$.addEventListener("pointercancel", (e) => { drag = null; setDragX(0, true); });
+  // evita que un arrastre termine como "toque" y avance dos veces
+  $("#story-tap").addEventListener("click", (e) => { if (dragMoved) { e.stopImmediatePropagation(); dragMoved = false; } }, true);
+
   // teclado: flechas cuando la historia está en pantalla
   document.addEventListener("keydown", (e) => {
     const r = $("#story").getBoundingClientRect();

@@ -1108,6 +1108,7 @@ canvas.weeks {
 /* ═════════ 2. HISTORIA (formato historias) ═════════ */
 .story {
   position: relative;
+  touch-action: pan-y; /* el gesto horizontal lo maneja la historia; el vertical sigue scrolleando */
   height: 100vh;
   height: 100svh;
   display: flex;
@@ -1573,6 +1574,39 @@ canvas.weeks {
 @media (prefers-reduced-motion: reduce) {
   .start-sq,
   .cap-anim {
+    animation: none;
+  }
+}
+
+.swipe-hint {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 4px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--muted);
+  transition: opacity 0.3s;
+}
+.swipe-hint.off {
+  opacity: 0;
+}
+.sw-arrow {
+  font-size: 20px;
+  line-height: 1;
+  animation: nudgeL 1.4s ease-in-out infinite;
+}
+.sw-arrow.r {
+  animation-name: nudgeR;
+}
+@keyframes nudgeL {
+  50% { transform: translateX(-5px); }
+}
+@keyframes nudgeR {
+  50% { transform: translateX(5px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .sw-arrow {
     animation: none;
   }
 }
