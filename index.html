@@ -31,41 +31,54 @@
       </div>
     </header>
 
-    <!-- ───────── 1. VIDEO (pantalla completa, arranca solo) ───────── -->
+    <!-- ───────── 1. INICIO + VIDEO (el toque en "Empezar" habilita el sonido) ───────── -->
     <section id="hero" class="hero" aria-label="Video de introducción">
-      <video id="hero-video" muted playsinline autoplay preload="auto" poster="video/poster_es.jpg">
+      <video id="hero-video" playsinline preload="auto" poster="video/poster_es.jpg">
         <source id="video-src" src="video/weeks_es.mp4" type="video/mp4" />
       </video>
       <div class="hero-shade"></div>
-      <button type="button" class="hero-sound" id="sound" aria-pressed="false">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z" fill="currentColor" /><path id="sound-x" d="M16 9l5 6M21 9l-5 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" /><path id="sound-w" d="M16.5 8.5a5 5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" hidden /></svg>
-        <span data-i18n="soundOn">Activar sonido</span>
+
+      <div class="hero-start" id="hero-start">
+        <span class="start-sq" aria-hidden="true"></span>
+        <h1 class="start-title" data-i18n="startTitle">Este cuadrado es una semana de tu vida.</h1>
+        <p class="start-sub" data-i18n="startSub">¿Cuántas te quedan? ¿Y cuántas se lleva el celular?</p>
+        <button type="button" class="start-btn" id="start">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor" /></svg>
+          <span data-i18n="startBtn">Empezar</span>
+        </button>
+        <p class="start-note"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z" fill="currentColor" /><path d="M16.5 8.5a5 5 0 0 1 0 7" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" /></svg><span data-i18n="startNote">Con sonido · 50 segundos</span></p>
+        <button type="button" class="start-skip" id="start-skip" data-i18n="startSkip">Ver sin el video</button>
+      </div>
+
+      <button type="button" class="hero-sound" id="sound" aria-pressed="true" hidden>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z" fill="currentColor" /><path id="sound-x" d="M16 9l5 6M21 9l-5 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" hidden /><path id="sound-w" d="M16.5 8.5a5 5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" /></svg>
+        <span data-i18n="soundOff">Silenciar</span>
       </button>
       <button type="button" class="hero-play" id="hero-play" hidden aria-label="Reproducir"><span class="play-ic"></span></button>
-      <div class="hero-bottom">
+      <div class="hero-bottom" id="hero-bottom" hidden>
         <button type="button" class="hero-skip" id="skip" data-i18n="skip">Saltar</button>
         <div class="hero-bar"><i id="hero-bar"></i></div>
       </div>
     </section>
 
-    <!-- ───────── 2. HISTORIA GUIADA (scroll) ───────── -->
+    <!-- ───────── 2. HISTORIA (formato historias: tocar / "Siguiente") ───────── -->
     <section id="story" class="story" aria-label="Una vida en semanas">
-      <div class="story-stage">
-        <div class="story-grid-wrap">
-          <canvas id="grid-story" class="weeks" aria-hidden="true"></canvas>
-        </div>
-        <div class="story-key"><span class="mini-sq"></span><span data-i18n="key1">= 1 semana</span><span class="sep">·</span><span data-i18n="key2">1 fila = 1 año</span></div>
-        <div class="story-caption" aria-live="polite">
-          <p class="cap-kicker" id="cap-kicker"></p>
-          <p class="cap-big"><span class="cap-num" id="cap-num">4.160</span> <span class="cap-unit" id="cap-unit"></span></p>
-          <p class="cap-text" id="cap-text"></p>
-          <p class="cap-src" id="cap-src"></p>
-          <a href="#vida" class="cta" id="cap-cta" hidden data-i18n="ctaCalc">Hacer mi cálculo</a>
-        </div>
-        <div class="story-dots" id="story-dots" aria-hidden="true"></div>
-        <div class="scroll-hint" id="scroll-hint" data-i18n="scrollHint">Deslizá para seguir</div>
+      <div class="story-progress" id="story-progress" aria-hidden="true"></div>
+      <div class="story-grid-wrap" id="story-tap">
+        <canvas id="grid-story" class="weeks" aria-hidden="true"></canvas>
       </div>
-      <div class="story-steps" id="story-steps"></div>
+      <div class="story-key"><span class="mini-sq"></span><span data-i18n="key1">= 1 semana</span><span class="sep">·</span><span data-i18n="key2">1 fila = 1 año</span></div>
+      <div class="story-caption" aria-live="polite">
+        <p class="cap-kicker" id="cap-kicker"></p>
+        <p class="cap-big"><span class="cap-num" id="cap-num">4.160</span> <span class="cap-unit" id="cap-unit"></span></p>
+        <p class="cap-text" id="cap-text"></p>
+        <p class="cap-src" id="cap-src"></p>
+      </div>
+      <div class="story-nav">
+        <button type="button" class="story-back" id="story-back" aria-label="Atrás">‹</button>
+        <button type="button" class="story-next" id="story-next"><span id="story-next-txt" data-i18n="next">Siguiente</span> <span aria-hidden="true">→</span></button>
+      </div>
+      <button type="button" class="story-skip" id="story-skip" data-i18n="storySkip">Ir directo a mi cálculo</button>
     </section>
 
     <main>
@@ -75,27 +88,24 @@
         <h2 class="h2" data-i18n="s1title">¿Y la tuya? Hacé la cuenta.</h2>
 
         <div class="card inputs">
-          <div class="steppers">
-            <div class="stepper">
-              <span class="st-label" data-i18n="age">Tu edad</span>
-              <div class="st-row">
-                <button type="button" class="st-btn" data-step="age:-1" aria-label="−1">−</button>
-                <input id="age" class="st-val" type="number" inputmode="numeric" min="0" max="79" step="1" value="30" aria-label="Edad" />
-                <button type="button" class="st-btn" data-step="age:1" aria-label="+1">+</button>
-              </div>
-              <span class="st-unit" data-i18n="ageUnit">años</span>
-            </div>
-            <div class="stepper">
-              <span class="st-label" data-i18n="hours">Celular por día</span>
-              <div class="st-row">
-                <button type="button" class="st-btn" data-step="hours:-0.5" aria-label="−0,5">−</button>
-                <input id="hours" class="st-val red" type="number" inputmode="decimal" min="0" max="16" step="0.5" value="4" aria-label="Horas por día" />
-                <button type="button" class="st-btn" data-step="hours:0.5" aria-label="+0,5">+</button>
-              </div>
-              <span class="st-unit" data-i18n="hoursUnit">horas</span>
+          <div class="q">
+            <span class="q-label" data-i18n="qAge">¿Cuántos años tenés?</span>
+            <div class="st-row">
+              <button type="button" class="st-btn" data-step="age:-1" aria-label="−1">−</button>
+              <input id="age" class="st-val" type="number" inputmode="numeric" min="0" max="79" step="1" value="30" aria-label="Edad" />
+              <button type="button" class="st-btn" data-step="age:1" aria-label="+1">+</button>
             </div>
           </div>
-          <input id="hours-range" type="range" min="0" max="12" step="0.25" value="4" class="range-red" aria-label="Horas por día" />
+          <div class="q">
+            <span class="q-label" data-i18n="qHours">¿Cuántas horas por día usás el celular?</span>
+            <div class="st-row">
+              <button type="button" class="st-btn" data-step="hours:-0.5" aria-label="−0,5">−</button>
+              <input id="hours" class="st-val red" type="number" inputmode="decimal" min="0" max="16" step="0.5" value="4" aria-label="Horas por día" />
+              <button type="button" class="st-btn" data-step="hours:0.5" aria-label="+0,5">+</button>
+            </div>
+            <div class="presets" id="presets" role="group" aria-label="Horas típicas"></div>
+          </div>
+          <input id="hours-range" type="range" min="0" max="12" step="0.25" value="4" class="range-red" hidden aria-hidden="true" tabindex="-1" />
           <details class="guide" id="guide">
             <summary data-i18n="guideQ">¿No sabés cuántas horas usás? Miralo en tu celular</summary>
             <div class="guide-tabs">
@@ -109,18 +119,31 @@
           </details>
         </div>
 
+        <!-- resultado: se entiende en 2 segundos -->
+        <div class="card result" id="life-head">
+          <p class="res-lead" data-i18n="resLead">Si seguís así, vas a pasar</p>
+          <p class="res-big"><span id="r-phone" class="red">435</span> <span class="res-unit" data-i18n="resUnit">semanas</span></p>
+          <p class="res-sub"><span data-i18n="resSub">mirando el celular</span> · <b id="r-human">8 años y 4 meses</b></p>
+          <div class="lifebar" id="lifebar" aria-label="Tu vida en porcentajes"></div>
+          <ul class="lifebar-legend" id="lifebar-legend"></ul>
+          <p class="res-compare" id="r-compare"></p>
+        </div>
+
         <div class="card grid-card" id="life-card">
-          <div class="grid-head" id="life-head">
-            <div class="big-stat"><span id="r-phone" class="num red">435</span><span class="unit" data-i18n="weeksPhone">semanas en el celular</span></div>
-            <div class="big-sub" id="r-years"></div>
+          <div class="gc-head">
+            <h3 class="h3" data-i18n="gridTitle">Tu vida en cuadraditos</h3>
+            <div class="seg" role="tablist" id="view-toggle">
+              <button type="button" role="tab" data-view="blocks" aria-selected="true" data-i18n="viewBlocks">Por cantidad</button>
+              <button type="button" role="tab" data-view="years" aria-selected="false" data-i18n="viewYears">Año por año</button>
+            </div>
           </div>
-          <p class="chips-h" data-i18n="chipsH">Tocá un color para verlo en tu vida:</p>
+          <p class="explain" id="view-explain"></p>
           <div class="chips" id="chips" role="group"></div>
           <p class="focus-line" id="focus-line"></p>
           <div class="grid-wrap" id="life-wrap">
             <canvas id="grid-life" class="weeks" aria-label="Grilla de semanas de tu vida"></canvas>
           </div>
-          <p class="row-info" id="row-info-life" data-i18n="tapRow">Tocá una fila para ver ese año en detalle.</p>
+          <p class="row-info" id="row-info-life"></p>
         </div>
 
         <div class="card whatif">

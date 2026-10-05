@@ -1023,20 +1023,129 @@ canvas.weeks {
   transform: scaleX(0);
 }
 
-/* ═════════ 2. HISTORIA GUIADA ═════════ */
+/* ═════════ 1b. PANTALLA DE INICIO (el toque habilita el sonido) ═════════ */
+.hero-start {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  padding: 24px;
+  text-align: center;
+  background: #000;
+}
+.start-sq {
+  width: 84px;
+  height: 84px;
+  border-radius: 6px;
+  background: #fff;
+  box-shadow: 0 0 40px rgba(255, 255, 255, 0.55);
+  animation: beat 1.33s ease-in-out infinite;
+  margin-bottom: 18px;
+}
+@keyframes beat {
+  0%, 100% { transform: scale(1); }
+  12% { transform: scale(1.08); }
+  24% { transform: scale(1); }
+  34% { transform: scale(1.05); }
+}
+.start-title {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: clamp(30px, 8vw, 46px);
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  max-width: 520px;
+}
+.start-sub {
+  color: #d4d4d4;
+  font-size: 17px;
+  max-width: 420px;
+}
+.start-btn {
+  margin-top: 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  border: 0;
+  border-radius: 999px;
+  padding: 16px 34px;
+  background: #fff;
+  color: #000;
+  font-weight: 800;
+  font-size: 19px;
+  box-shadow: 0 0 40px rgba(255, 255, 255, 0.35);
+}
+.start-btn svg {
+  width: 22px;
+  height: 22px;
+}
+.start-note {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--muted);
+  font-size: 13.5px;
+  font-weight: 600;
+}
+.start-note svg {
+  width: 18px;
+  height: 18px;
+}
+.start-skip {
+  margin-top: 6px;
+  border: 0;
+  background: none;
+  color: var(--muted);
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* ═════════ 2. HISTORIA (formato historias) ═════════ */
 .story {
   position: relative;
-}
-.story-stage {
-  position: sticky;
-  top: 0;
   height: 100vh;
   height: 100svh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: calc(64px + env(safe-area-inset-top)) var(--pad) calc(22px + env(safe-area-inset-bottom));
+  padding: calc(66px + env(safe-area-inset-top)) var(--pad) calc(14px + env(safe-area-inset-bottom));
   overflow: hidden;
+  user-select: none;
+  -webkit-user-select: none;
+}
+.story-progress {
+  position: absolute;
+  top: calc(56px + env(safe-area-inset-top));
+  left: var(--pad);
+  right: var(--pad);
+  display: flex;
+  gap: 4px;
+}
+.story-progress i {
+  flex: 1;
+  height: 3px;
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.22);
+  overflow: hidden;
+  position: relative;
+}
+.story-progress i::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: #fff;
+  transform-origin: 0 50%;
+  transform: scaleX(0);
+  transition: transform 0.35s ease;
+}
+.story-progress i.done::after,
+.story-progress i.on::after {
+  transform: scaleX(1);
 }
 .story-grid-wrap {
   flex: 1 1 auto;
@@ -1045,6 +1154,9 @@ canvas.weeks {
   max-width: 560px;
   display: flex;
   justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+  cursor: pointer;
 }
 .story-grid-wrap canvas {
   display: block;
@@ -1071,8 +1183,8 @@ canvas.weeks {
   flex: none;
   width: 100%;
   max-width: 560px;
-  min-height: 176px;
-  margin-top: 10px;
+  min-height: 150px;
+  margin-top: 8px;
   text-align: center;
 }
 .cap-kicker {
@@ -1090,18 +1202,18 @@ canvas.weeks {
 .cap-num {
   font-family: "Space Grotesk", sans-serif;
   font-weight: 700;
-  font-size: clamp(44px, 12vw, 64px);
+  font-size: clamp(46px, 13vw, 66px);
   letter-spacing: -0.03em;
   font-variant-numeric: tabular-nums;
 }
 .cap-unit {
   font-weight: 800;
-  font-size: 17px;
+  font-size: 18px;
 }
 .cap-text {
   margin: 8px auto 0;
   max-width: 440px;
-  font-size: 16.5px;
+  font-size: 17px;
   line-height: 1.4;
   color: #e5e5e5;
 }
@@ -1120,63 +1232,209 @@ canvas.weeks {
     transform: translateY(10px);
   }
 }
-.cta {
-  display: inline-block;
-  margin-top: 12px;
-  padding: 13px 26px;
-  border-radius: 999px;
+.story-nav {
+  flex: none;
+  width: 100%;
+  max-width: 560px;
+  display: flex;
+  gap: 10px;
+  margin-top: 8px;
+}
+.story-back {
+  flex: none;
+  width: 56px;
+  border: 1px solid #333;
+  background: transparent;
+  border-radius: 14px;
+  font-size: 30px;
+  line-height: 1;
+}
+.story-back:disabled {
+  opacity: 0.3;
+}
+.story-next {
+  flex: 1;
+  border: 0;
+  border-radius: 14px;
+  padding: 16px;
   background: #fff;
   color: #000;
   font-weight: 800;
-  text-decoration: none;
-  font-size: 16px;
-  box-shadow: 0 0 30px rgba(255, 255, 255, 0.35);
+  font-size: 17px;
 }
-.story-dots {
-  position: absolute;
-  right: 8px;
-  top: 50%;
-  transform: translateY(-50%);
+.story-next.final {
+  background: var(--red);
+  color: #fff;
+  box-shadow: 0 0 30px rgba(239, 68, 68, 0.45);
+}
+.story-skip {
+  margin-top: 8px;
+  border: 0;
+  background: none;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* ═════════ 3. CÁLCULO ═════════ */
+.q + .q {
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
+}
+.q {
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 8px;
 }
-.story-dots i {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: #444;
-  transition: background 0.3s, transform 0.3s;
-}
-.story-dots i.on {
-  background: #fff;
-  transform: scale(1.4);
-}
-.scroll-hint {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: calc(4px + env(safe-area-inset-bottom));
-  text-align: center;
-  font-size: 12px;
+.q-label {
   font-weight: 700;
+  font-size: 16px;
+  text-align: center;
+}
+.q .st-btn {
+  width: 46px;
+  height: 46px;
+  font-size: 26px;
+}
+.q .st-val {
+  width: 92px;
+  font-size: 44px;
+}
+.presets {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px;
+}
+.pre {
+  border: 1px solid #333;
+  background: #000;
+  border-radius: 10px;
+  padding: 7px 12px;
+  font-size: 14px;
+  font-weight: 700;
+  font-family: "Space Grotesk", sans-serif;
+}
+.pre[aria-pressed="true"] {
+  background: var(--red);
+  border-color: var(--red);
+  color: #fff;
+}
+.result {
+  text-align: center;
+  padding: 22px 18px;
+}
+.res-lead {
+  font-size: 17px;
+  font-weight: 600;
+  color: #d4d4d4;
+}
+.res-big {
+  margin-top: 4px;
+  line-height: 1;
+}
+.res-big #r-phone {
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 700;
+  font-size: clamp(64px, 19vw, 96px);
+  letter-spacing: -0.04em;
+  font-variant-numeric: tabular-nums;
+}
+.res-unit {
+  font-weight: 800;
+  font-size: 22px;
+}
+.res-sub {
+  margin-top: 6px;
+  font-size: 17px;
+  color: #e5e5e5;
+}
+.res-sub b {
+  color: #fff;
+}
+.lifebar {
+  margin-top: 18px;
+  height: 22px;
+  display: flex;
+  border-radius: 6px;
+  overflow: hidden;
+  background: #1a1a1a;
+}
+.lifebar i {
+  display: block;
+  height: 100%;
+  transition: width 0.4s ease;
+}
+.lifebar-legend {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px 14px;
+  margin-top: 10px;
+  font-size: 13px;
+  color: #d4d4d4;
+}
+.lifebar-legend li {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.lifebar-legend .sw {
+  width: 11px;
+  height: 11px;
+  border-radius: 2px;
+}
+.lifebar-legend b {
+  color: #fff;
+  font-family: "Space Grotesk", sans-serif;
+}
+.lifebar-legend li.hl {
+  color: #fff;
+  font-weight: 700;
+}
+.res-compare {
+  margin-top: 14px;
+  font-size: 14.5px;
+  color: #d4d4d4;
+}
+.res-compare b {
+  color: #fff;
+}
+.gc-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 8px;
+}
+.gc-head .h3 {
+  margin: 0;
+}
+.seg {
+  display: inline-flex;
+  border: 1px solid #333;
+  border-radius: 10px;
+  padding: 3px;
+  gap: 3px;
+}
+.seg button {
+  border: 0;
+  background: transparent;
   color: var(--muted);
-  animation: hint 1.6s ease-in-out infinite;
-  transition: opacity 0.3s;
+  border-radius: 7px;
+  padding: 6px 10px;
+  font-size: 13px;
+  font-weight: 700;
 }
-.scroll-hint.off {
-  opacity: 0;
-  animation: none;
-}
-@keyframes hint {
-  50% {
-    transform: translateY(4px);
-    opacity: 0.6;
-  }
-}
-.story-steps > div {
-  height: 75vh;
-  height: 75svh;
+.seg button[aria-selected="true"] {
+  background: #fff;
+  color: #000;
 }
 
 /* ═════════ 3. CÁLCULO: colores como botones ═════════ */
@@ -1313,7 +1571,7 @@ canvas.weeks {
   padding-top: 0;
 }
 @media (prefers-reduced-motion: reduce) {
-  .scroll-hint,
+  .start-sq,
   .cap-anim {
     animation: none;
   }

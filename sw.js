@@ -1,5 +1,5 @@
 /* Cache de la app para que funcione offline. Subir VERSION cuando cambie cualquier archivo. */
-const VERSION = "semanas-v3";
+const VERSION = "semanas-v4";
 const FILES = ["./", "index.html", "styles.css", "app.js", "data.js", "manifest.webmanifest",
   "fonts/Inter-var.woff2", "fonts/SpaceGrotesk-var.woff2", "icons/icon-192.png", "icons/icon-512.png",
   "video/poster_es.jpg", "video/poster_en.jpg"];

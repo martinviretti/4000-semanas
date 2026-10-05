@@ -7,25 +7,23 @@ Sin build ni backend: HTML + CSS + JS. Funciona offline después de la primera v
 
 ## Recorrido (de arriba hacia abajo)
 
-1. **Video a pantalla completa, apenas se abre la app** (parte 1, `video/weeks_es.mp4` / `weeks_en.mp4`,
-   720x1280, ~3,6 MB, según el idioma). Arranca **en silencio**: ningún navegador permite que un video
-   arranque solo con sonido, por eso tiene subtítulos quemados y un botón "Activar sonido". Tiene
-   "Saltar" y barra de progreso. Al terminar, la página baja sola con un scroll suave. Si la persona
-   scrollea a mano durante el video, se pausa y no se la mueve. Si el navegador bloquea el autoplay
-   (modo ahorro de batería), aparece un botón de play.
-2. **Historia guiada con scroll** (grilla fija, 7 pasos): una vida de 80 años = 4.160 semanas, después una
-   persona promedio de 40 años: ya vivió 2.080, duerme 693, trabaja 286 y pasa 326 en el celular
-   (3,75 h/día, promedio global de 35–44 años, GWI 2025, derivado). Le quedan 775 semanas libres. Cierra
-   con "¿Te animás a hacer la cuenta con tus números?". Cada color aparece de a uno, así el código se
-   aprende sin explicación.
-3. **Tu cálculo**: edad y horas con botones –/+, resultado inmediato, **colores como botones** (tocás
-   "celular" y se iluminan solo esos cuadrados con su total y porcentaje), marcador "Vos hoy" y detalle
-   de cada año al tocar una fila. Incluye "¿Y si bajás a…?", guía de tiempo de pantalla y supuestos ajustables.
-4. **¿Querés más datos?** (paneles plegables, al final): por edad (vos vs. tu edad, vida típica, etapas),
-   antes y ahora (un día por década + gráfico), Argentina, y fuentes y método (todas las fuentes enlazadas).
-
-Extras: header que aparece después del video, barra fija con tu resultado, compartir como imagen
-vertical 1080x1920, y "Volver a ver el video".
+1. **Pantalla de inicio**: el cuadrado que late + "Este cuadrado es una semana de tu vida" + botón **Empezar**.
+   Ese toque es lo que permite reproducir **con sonido** desde el primer segundo (ningún navegador deja
+   arrancar un video con audio sin un toque). "Ver sin el video" saltea directo a la historia.
+2. **Video a pantalla completa** con sonido (parte 1, ~3,6 MB, según el idioma), botón Silenciar, Saltar y
+   barra de progreso. Al terminar baja solo a la historia.
+3. **Historia en formato historias** (como Instagram): barras de progreso arriba, botón **Siguiente**, tocar
+   la grilla (derecha avanza, izquierda vuelve), deslizar o usar las flechas del teclado. 7 pasos: 4.160
+   semanas, después una persona promedio de 40 años con 2.080 vividas, 693 durmiendo, 286 trabajando, 326 en
+   el celular (3,75 h/día, GWI 2025, derivado) y 775 libres. El último paso lleva a "Hacer mi cálculo".
+4. **Tu cálculo**: preguntas directas ("¿Cuántos años tenés?", "¿Cuántas horas por día…?") con –/+ y
+   botones de horas típicas. **Resultado en una frase**: "Si seguís así, vas a pasar 435 semanas mirando el
+   celular · 8 años y 4 meses". Debajo, la **barra de tu vida** con porcentajes (vivido, dormir, trabajo,
+   celular, libre) y la comparación con la gente de tu edad. La grilla tiene dos vistas: **Por cantidad**
+   (por defecto: bloques contiguos por color; tocar un cuadrado dice de qué es) y **Año por año** (tocar
+   una fila muestra ese año). Los colores se tocan para resaltarlos. La barra fija muestra tu número
+   siempre que la tarjeta del resultado no esté en pantalla.
+5. **¿Querés más datos?** al final, en paneles: por edad, antes y ahora, Argentina, fuentes y método.
 
 ## Datos
 

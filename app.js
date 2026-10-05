@@ -96,7 +96,7 @@
       srcListH: "Fuentes", replay: "Volver a ver el video", chartQ: "Todas las series en un gráfico",
       s3lead: "Un día de una persona en EE.UU., cada 10 años. Cada cuadrado es 1 hora del día. Mirá cuándo aparece el rojo.",
       advNote: "Dormir = horas de sueño sobre lo que te queda; trabajo = 48 semanas por año hasta la jubilación.",
-      focusNone: "Sin selección: ves todos los colores juntos.",
+      focusNone: "Tocá un color para resaltarlo en la grilla.",
       focus: {
         lived: (w) => `<b>${w}</b> semanas que ya viviste.`,
         sleep: (w, y) => `<b style="color:#3b82f6">${w}</b> semanas durmiendo: ${y} años de lo que te queda.`,
@@ -113,6 +113,21 @@
         { k: "Lo que le queda", u: "semanas libres", t: "Este es el tiempo libre de verdad. Todo lo demás ya tiene dueño." },
         { k: "Tu turno", u: "", t: "¿Te animás a hacer la cuenta con tus números?", cta: true },
       ],
+      startTitle: "Este cuadrado es una semana de tu vida.", startSub: "¿Cuántas te quedan? ¿Y cuántas se lleva el celular?",
+      startBtn: "Empezar", startNote: "Con sonido · menos de 1 minuto", startSkip: "Ver sin el video",
+      next: "Siguiente", nextFinal: "Hacer mi cálculo", storySkip: "Ir directo a mi cálculo",
+      qAge: "¿Cuántos años tenés?", qHours: "¿Cuántas horas por día usás el celular?",
+      resLead: "Si seguís así, vas a pasar", resUnit: "semanas", resSub: "mirando el celular",
+      human: (y, m) => (y > 0 ? `${y} ${y === 1 ? "año" : "años"}` : "") + (y > 0 && m > 0 ? " y " : "") + (m > 0 ? `${m} ${m === 1 ? "mes" : "meses"}` : "") || "menos de un mes",
+      barLabels: { lived: "vivido", sleep: "dormir", work: "trabajo", phone: "celular", free: "libre" },
+      compareLine: (you, avg, range) => `Vos: <b>${you} h</b> por día · la gente de tu edad (${range}): <b>~${avg} h</b>.`,
+      compareNone: "Para tu edad no hay un dato confiable de uso del celular para comparar.",
+      gridTitle: "Tu vida en cuadraditos", viewBlocks: "Por cantidad", viewYears: "Año por año",
+      explainBlocks: "Cada cuadrado es una semana. Arriba, lo que ya viviste; después, las semanas que te quedan ordenadas por color para comparar cuánto ocupa cada cosa.",
+      explainYears: "Cada fila es un año de tu vida. Desde tu fila para abajo, cuántas de las 52 semanas de cada año van a cada cosa.",
+      tapCell: "Tocá cualquier cuadrado para ver de qué es.", tapRow: "Tocá una fila para ver ese año en detalle.",
+      cellIs: (label, n) => `Este cuadrado es una semana de <b>${label}</b>. Tenés <b>${n}</b> así.`,
+      cellLabels: { lived: "tu vida ya vivida", sleep: "sueño", work: "trabajo", phone: "celular", free: "tiempo libre" },
       steps: {
         ios: ["Abrí <b>Ajustes</b>.", "Tocá <b>Tiempo en pantalla</b>.", "Tocá <b>Ver toda la actividad de apps y sitios web</b>.", "Elegí <b>Semana</b>: arriba aparece tu <b>promedio diario</b>.", "Si está desactivado, activalo y volvé en unos días."],
         android: ["Abrí <b>Ajustes</b>.", "Entrá a <b>Bienestar digital y controles parentales</b>.", "El gráfico muestra el tiempo de hoy: tocalo para ver el detalle por día.", "Mirá los últimos 7 días y sacá un promedio."],
@@ -206,7 +221,7 @@
       srcListH: "Sources", replay: "Watch the video again", chartQ: "Every series in one chart",
       s3lead: "One day of a person in the US, every 10 years. Each square is 1 hour of the day. Watch when the red shows up.",
       advNote: "Sleep = sleep hours over what's left; work = 48 weeks a year until retirement.",
-      focusNone: "No selection: you see every color together.",
+      focusNone: "Tap a color to highlight it in the grid.",
       focus: {
         lived: (w) => `<b>${w}</b> weeks you've already lived.`,
         sleep: (w, y) => `<b style="color:#3b82f6">${w}</b> weeks asleep: ${y} years of what's left.`,
@@ -223,6 +238,21 @@
         { k: "What's left", u: "free weeks", t: "This is the truly free time. Everything else is already spoken for." },
         { k: "Your turn", u: "", t: "Want to run the numbers on your own life?", cta: true },
       ],
+      startTitle: "This square is one week of your life.", startSub: "How many do you have left? And how many does your phone take?",
+      startBtn: "Start", startNote: "With sound · under 1 minute", startSkip: "Skip the video",
+      next: "Next", nextFinal: "Run my numbers", storySkip: "Go straight to my numbers",
+      qAge: "How old are you?", qHours: "How many hours a day do you use your phone?",
+      resLead: "If you keep this up, you'll spend", resUnit: "weeks", resSub: "looking at your phone",
+      human: (y, m) => (y > 0 ? `${y} ${y === 1 ? "year" : "years"}` : "") + (y > 0 && m > 0 ? " and " : "") + (m > 0 ? `${m} ${m === 1 ? "month" : "months"}` : "") || "less than a month",
+      barLabels: { lived: "lived", sleep: "sleep", work: "work", phone: "phone", free: "free" },
+      compareLine: (you, avg, range) => `You: <b>${you} h</b> a day · people your age (${range}): <b>~${avg} h</b>.`,
+      compareNone: "There's no reliable phone-use figure for your age to compare with.",
+      gridTitle: "Your life in squares", viewBlocks: "By amount", viewYears: "Year by year",
+      explainBlocks: "Each square is one week. At the top, what you've already lived; then the weeks you have left, grouped by color so you can compare how much each thing takes.",
+      explainYears: "Each row is one year of your life. From your row down, how many of each year's 52 weeks go to each thing.",
+      tapCell: "Tap any square to see what it is.", tapRow: "Tap a row to see that year in detail.",
+      cellIs: (label, n) => `This square is a week of <b>${label}</b>. You have <b>${n}</b> like it.`,
+      cellLabels: { lived: "life already lived", sleep: "sleep", work: "work", phone: "phone", free: "free time" },
       steps: {
         ios: ["Open <b>Settings</b>.", "Tap <b>Screen Time</b>.", "Tap <b>See All App &amp; Website Activity</b>.", "Choose <b>Week</b>: your <b>daily average</b> is at the top.", "If it's off, turn it on and come back in a few days."],
         android: ["Open <b>Settings</b>.", "Go to <b>Digital Wellbeing &amp; parental controls</b>.", "The chart shows today's time: tap it for the daily breakdown.", "Look at the last 7 days and average them."],
@@ -385,7 +415,17 @@
       for (let j = 0; j < p; j++) cat[r * COLS + c++] = j < p2 ? 4 : 6;
       rowCount[r] = { s, w, p: p2, rec: p - p2, f: 52 - s - w - p };
     }
-    return { L, A, H, H2, sleep, work, phone, phone2, free, overflow, lived: A * 52, cat, rowCount, recovered: phone - phone2 };
+    // vista "por cantidad": lo vivido arriba y lo que queda en bloques contiguos por color
+    const blocks = new Uint8Array(L * COLS);
+    let bi = 0;
+    const fill = (v, n) => { for (let j = 0; j < n && bi < blocks.length; j++) blocks[bi++] = v; };
+    fill(1, A * 52);
+    fill(2, sleep);
+    fill(3, work);
+    fill(4, phone2);
+    fill(6, phone - phone2);
+    fill(5, blocks.length - bi);
+    return { L, A, H, H2, sleep, work, phone, phone2, free, overflow, lived: A * 52, cat, blocks, rowCount, recovered: phone - phone2 };
   }
 
   function yearsPhrase(weeks) {
@@ -400,6 +440,7 @@
   }
 
   let lifeGeo = null;
+  let viewMode = "blocks"; // blocks = por cantidad (bloques contiguos) · years = año por año
   let focusCat = null; // color tocado en las fichas: lived · sleep · work · phone · free
   const CAT_OF = { 1: "lived", 2: "sleep", 3: "work", 4: "phone", 6: "phone", 5: "free" };
   function drawLife(reveal = 1) {
@@ -412,13 +453,14 @@
       if (k === 6) return { fill: COL.phone, hollow: true };
       return { fill: COL.free, alpha: 0.92 };
     };
+    const cats = viewMode === "blocks" ? m.blocks : m.cat;
     const cellAt = (r, c) => {
-      const k = m.cat[r * COLS + c];
+      const k = cats[r * COLS + c];
       const s = base(k);
       if (focusCat && CAT_OF[k] !== focusCat) s.alpha = (s.alpha ?? 1) * 0.13;
       return s;
     };
-    lifeGeo = drawWeeks($("#grid-life"), m.L, cellAt, reveal, selLife);
+    lifeGeo = drawWeeks($("#grid-life"), m.L, cellAt, reveal, viewMode === "years" ? selLife : -1);
     placeYou($("#life-wrap"), lifeGeo, m.A, t().you(m.A));
   }
 
@@ -430,8 +472,13 @@
     $("#target-out").textContent = fmtH(parseFloat(el.target.value)) + " h";
     syncRanges();
 
-    $("#r-phone").textContent = fmtInt(m.phone);
-    $("#r-years").textContent = m.phone > 0 ? yearsPhrase(m.phone) : "";
+    countResult(m.phone);
+    $("#r-human").textContent = humanWeeks(m.phone);
+    renderLifebar(m);
+    const lf = lifelineAt(m.A);
+    $("#r-compare").innerHTML = lf && lf.h != null ? t().compareLine(fmtH(m.H), fmtH(lf.h), `${lf.from}–${lf.to === 79 ? 80 : lf.to}`) : t().compareNone;
+    $$("#presets .pre").forEach((b) => b.setAttribute("aria-pressed", String(parseFloat(b.dataset.h) === m.H)));
+    $("#view-explain").textContent = viewMode === "blocks" ? t().explainBlocks : t().explainYears;
     $("#r-recover").textContent = fmtInt(m.recovered);
     $("#r-recover-y").textContent = t().yearsShort(fmtDec(m.recovered / 52, 1));
     $("#sticky-num").textContent = fmtInt(m.phone);
@@ -448,6 +495,36 @@
     if (revealed.life >= 1) drawLife(1);
   }
 
+  function humanWeeks(w) {
+    let y = Math.floor(w / 52), mo = Math.round(((w - y * 52) * 12) / 52);
+    if (mo === 12) { y++; mo = 0; }
+    return t().human(y, mo);
+  }
+
+  let resShown = null, resAnim = 0;
+  function countResult(to) {
+    const node = $("#r-phone");
+    if (resShown == null || window.matchMedia("(prefers-reduced-motion: reduce)").matches) { resShown = to; node.textContent = fmtInt(to); return; }
+    const from = resShown, t0 = performance.now(), id = ++resAnim;
+    resShown = to;
+    const step = (now) => {
+      if (id !== resAnim) return;
+      const p = Math.min(1, (now - t0) / 420);
+      node.textContent = fmtInt(Math.round(from + (to - from) * (1 - Math.pow(1 - p, 3))));
+      if (p < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  }
+
+  function renderLifebar(m) {
+    const total = m.L * 52;
+    const parts = [["lived", COL.lived, m.lived], ["sleep", COL.sleep, m.sleep], ["work", COL.work, m.work], ["phone", COL.phone, m.phone], ["free", COL.free, m.free]];
+    $("#lifebar").innerHTML = parts.map(([k, c, v]) => `<i style="width:${(v / total) * 100}%;background:${c}" title="${t().barLabels[k]}"></i>`).join("");
+    $("#lifebar-legend").innerHTML = parts
+      .map(([k, c, v]) => `<li class="${k === "phone" ? "hl" : ""}"><span class="sw" style="background:${c}"></span>${t().barLabels[k]} <b>${Math.round((v / total) * 100)}%</b></li>`)
+      .join("");
+  }
+
   function renderFocusLine() {
     const m = model, box = $("#focus-line");
     if (!focusCat) { box.textContent = t().focusNone; return; }
@@ -456,9 +533,17 @@
     box.innerHTML = t().focus[focusCat](fmtInt(v), fmtDec(v / 52, 1), Math.round((m.phone / left) * 100));
   }
 
+  let selCell = -1;
   function renderRowLife() {
     const m = model, box = $("#row-info-life");
     if (m.overflow) { box.innerHTML = t().overflow; return; }
+    if (viewMode === "blocks") {
+      if (selCell < 0) { box.textContent = t().tapCell; return; }
+      const cat = CAT_OF[m.blocks[selCell]];
+      const n = { lived: m.lived, sleep: m.sleep, work: m.work, phone: m.phone, free: m.free }[cat];
+      box.innerHTML = t().cellIs(t().cellLabels[cat], fmtInt(n));
+      return;
+    }
     if (selLife < 0) { box.textContent = t().tapRow; return; }
     const r = selLife;
     if (r < m.A) { box.innerHTML = t().rowLived(r); return; }
@@ -631,9 +716,9 @@
     $("#guide-steps").innerHTML = t().steps[activeOS].map((s) => `<li>${s}</li>`).join("");
   }
 
-  // ───────────────── 1. video de entrada (pantalla completa, arranca solo y en silencio) ─────────────────
+  // ───────────────── 1. inicio + video (el toque en "Empezar" habilita el sonido) ─────────────────
   const hero = $("#hero"), video = $("#hero-video");
-  let heroDone = false;
+  let heroDone = false, heroStarted = false;
   function playHero() {
     const pr = video.play();
     if (pr && pr.then) pr.then(() => ($("#hero-play").hidden = true)).catch(() => ($("#hero-play").hidden = false));
@@ -641,11 +726,10 @@
   function setVideoLang() {
     video.poster = `video/poster_${LANG}.jpg`;
     const src = `video/weeks_${LANG}.mp4`;
-    // comparar con el src configurado (currentSrc está vacío al cargar y un load() de más corta el autoplay)
     if ($("#video-src").getAttribute("src") !== src) {
       $("#video-src").setAttribute("src", src);
       video.load();
-      if (!heroDone && window.scrollY < hero.offsetHeight / 2) playHero();
+      if (heroStarted && !heroDone) playHero();
     }
   }
   function setSoundUI() {
@@ -655,10 +739,26 @@
     $("#sound-w").toggleAttribute("hidden", !on);
     $("#sound span").textContent = on ? t().soundOff : t().soundOn;
   }
+  function startHero() {
+    heroStarted = true;
+    heroDone = false;
+    $("#hero-start").hidden = true;
+    $("#sound").hidden = false;
+    $("#hero-bottom").hidden = false;
+    video.muted = false; // el toque del usuario permite reproducir con sonido
+    video.currentTime = 0;
+    setSoundUI();
+    playHero();
+  }
+  $("#start").addEventListener("click", startHero);
+  $("#start-skip").addEventListener("click", () => {
+    heroStarted = true;
+    $("#hero-start").hidden = true;
+    finishHero();
+  });
   $("#sound").addEventListener("click", () => {
     video.muted = !video.muted;
-    if (video.ended) { video.currentTime = 0; heroDone = false; }
-    if (video.paused) playHero();
+    if (video.paused && !video.ended) playHero();
     setSoundUI();
   });
   $("#hero-play").addEventListener("click", () => { video.muted = false; setSoundUI(); playHero(); });
@@ -669,19 +769,14 @@
     if (heroDone) return;
     heroDone = true;
     localStorage.setItem("seenVideo", "1");
-    smoothScrollTo($("#story").offsetTop, 1500);
+    kickStory();
+    smoothScrollTo($("#story").offsetTop, 1300);
   };
   video.addEventListener("ended", finishHero);
-  // reintentos de autoplay: Chrome pausa videos mudos en pestañas en segundo plano, y algunos modos de ahorro lo bloquean
-  const retryHero = () => { if (!heroDone && video.paused && !video.ended && window.scrollY < hero.offsetHeight / 2) playHero(); };
-  document.addEventListener("visibilitychange", () => { if (document.visibilityState === "visible") retryHero(); });
-  hero.addEventListener("pointerdown", (e) => { if (!e.target.closest("button")) retryHero(); });
   $("#skip").addEventListener("click", () => { video.pause(); finishHero(); });
   $("#replay").addEventListener("click", () => {
-    heroDone = false;
     window.scrollTo(0, 0);
-    video.currentTime = 0;
-    playHero();
+    startHero();
   });
 
   /* scroll suave con easing (para el pase automático del video a la historia) */
@@ -709,7 +804,7 @@
     smoothScrollTo(target.getBoundingClientRect().top + window.scrollY - (a.getAttribute("href") === "#story" ? 0 : 56), 900);
   }));
 
-  // ───────────────── 2. historia guiada: una persona promedio de 40 años ─────────────────
+  // ───────────────── 2. historia (formato historias): una persona promedio de 40 años ─────────────────
   const story = computeModel({ L: 80, A: 40, H: 3.75, H2: 3.75, S: 8, W: 40, R: 65 });
   const sRank = new Float32Array(story.cat.length); // orden de aparición dentro de cada color (fila por fila)
   {
@@ -725,10 +820,10 @@
   const STEP_NUM = [4160, story.lived, story.sleep, story.work, story.phone, story.free, null];
   const STEP_COLOR = ["#ffffff", "#a3a3a3", COL.sleep, COL.work, COL.phone, "#ffffff", "#ffffff"];
   const STORY_COL = { 1: COL.lived, 2: COL.sleep, 3: COL.work, 4: COL.phone };
+  const LAST = STEP_TARGETS.length - 1;
   const sProg = { 1: 0, 2: 0, 3: 0, 4: 0, dim: 0 };
   let sStep = -1, introReveal = 0, shownNum = 0;
-  $("#story-steps").innerHTML = STEP_TARGETS.map(() => "<div></div>").join("");
-  $("#story-dots").innerHTML = STEP_TARGETS.map(() => "<i></i>").join("");
+  $("#story-progress").innerHTML = STEP_TARGETS.map(() => "<i></i>").join("");
 
   function drawStory() {
     const cv = $("#grid-story"), wrap = cv.parentElement;
@@ -784,15 +879,14 @@
   }
 
   let countAnim = 0;
-  function countTo(el, to, color) {
-    el.style.color = color;
-    if (to == null) { el.textContent = ""; return; }
+  function countTo(node, to, color) {
+    node.style.color = color;
+    if (to == null) { node.textContent = ""; return; }
     const from = shownNum, t0 = performance.now(), id = ++countAnim;
     const step = (now) => {
       if (id !== countAnim) return;
       const p = Math.min(1, (now - t0) / 650);
-      const v = Math.round(from + (to - from) * (1 - Math.pow(1 - p, 3)));
-      el.textContent = fmtInt(v);
+      node.textContent = fmtInt(Math.round(from + (to - from) * (1 - Math.pow(1 - p, 3))));
       if (p < 1) requestAnimationFrame(step);
       else shownNum = to;
     };
@@ -800,6 +894,7 @@
   }
 
   function setStoryStep(i, force = false) {
+    i = clamp(i, 0, LAST);
     if (i === sStep && !force) return;
     sStep = i;
     const st = t().story[i];
@@ -812,19 +907,41 @@
     $("#cap-unit").textContent = st.u;
     $("#cap-text").textContent = typeof st.t === "function" ? st.t(fmtH, Math.floor(story.phone / 52)) : st.t;
     $("#cap-src").textContent = st.src || "";
-    $("#cap-cta").hidden = !st.cta;
     countTo($("#cap-num"), STEP_NUM[i], STEP_COLOR[i]);
-    $$("#story-dots i").forEach((d, k) => d.classList.toggle("on", k === i));
-    $("#scroll-hint").classList.toggle("off", i > 0);
+    $$("#story-progress i").forEach((d, k) => { d.classList.toggle("done", k < i); d.classList.toggle("on", k === i); });
+    $("#story-back").disabled = i === 0;
+    const nb = $("#story-next");
+    nb.classList.toggle("final", i === LAST);
+    $("#story-next-txt").textContent = i === LAST ? t().nextFinal : t().next;
     kickStory();
   }
-
-  function updateStory() {
-    const rect = $("#story").getBoundingClientRect(), vh = window.innerHeight;
-    if (rect.top < vh * 0.9 && introReveal === 0) kickStory();
-    const stepH = $("#story-steps").firstElementChild.offsetHeight || vh * 0.75;
-    setStoryStep(clamp(Math.floor((-rect.top + stepH * 0.35) / stepH), 0, STEP_TARGETS.length - 1));
-  }
+  const goCalc = () => smoothScrollTo($("#vida").getBoundingClientRect().top + window.scrollY - 56, 900);
+  const storyNext = () => (sStep >= LAST ? goCalc() : setStoryStep(sStep + 1));
+  const storyBack = () => setStoryStep(sStep - 1);
+  $("#story-next").addEventListener("click", storyNext);
+  $("#story-back").addEventListener("click", storyBack);
+  $("#story-skip").addEventListener("click", goCalc);
+  // tocar la grilla: mitad derecha avanza, mitad izquierda vuelve (como las historias)
+  $("#story-tap").addEventListener("click", (e) => {
+    const r = e.currentTarget.getBoundingClientRect();
+    (e.clientX - r.left < r.width * 0.3 ? storyBack : storyNext)();
+  });
+  // deslizar horizontal
+  let sx = null, sy = null;
+  $("#story").addEventListener("touchstart", (e) => { sx = e.touches[0].clientX; sy = e.touches[0].clientY; }, { passive: true });
+  $("#story").addEventListener("touchend", (e) => {
+    if (sx == null) return;
+    const dx = e.changedTouches[0].clientX - sx, dy = e.changedTouches[0].clientY - sy;
+    if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy) * 1.5) (dx < 0 ? storyNext : storyBack)();
+    sx = null;
+  }, { passive: true });
+  // teclado: flechas cuando la historia está en pantalla
+  document.addEventListener("keydown", (e) => {
+    const r = $("#story").getBoundingClientRect();
+    if (r.top > window.innerHeight * 0.5 || r.bottom < window.innerHeight * 0.5) return;
+    if (e.key === "ArrowRight") storyNext();
+    if (e.key === "ArrowLeft") storyBack();
+  });
 
   // ───────────────── idioma ─────────────────
   function applyLang() {
@@ -856,6 +973,7 @@
   };
   const rerender = () => {
     renderLife();
+    requestAnimationFrame(onScroll);
     renderVersus();
     if (revealed.data >= 1) drawData(1);
     if (revealed.life < 1) { revealed.life = 1; drawLife(1); }
@@ -884,8 +1002,34 @@
     revealed.life = 1;
     drawLife(1);
   });
+  $("#view-toggle").addEventListener("click", (e) => {
+    const b = e.target.closest("button");
+    if (!b) return;
+    viewMode = b.dataset.view;
+    $$("#view-toggle button").forEach((x) => x.setAttribute("aria-selected", String(x === b)));
+    $("#view-explain").textContent = viewMode === "blocks" ? t().explainBlocks : t().explainYears;
+    selLife = -1;
+    selCell = -1;
+    revealed.life = 0;
+    cascade("life", drawLife);
+    renderRowLife();
+  });
+  $("#presets").addEventListener("click", (e) => {
+    const b = e.target.closest(".pre");
+    if (!b) return;
+    el.hours.value = b.dataset.h;
+    onHoursChanged();
+    rerender();
+  });
   $("#grid-life").addEventListener("click", (e) => {
     const r = rowFromEvent(e.currentTarget, e, model.L);
+    if (viewMode === "blocks") {
+      const rect = e.currentTarget.getBoundingClientRect();
+      const c = clamp(Math.floor((e.clientX - rect.left - MARGIN) / ((rect.width - MARGIN) / COLS)), 0, COLS - 1);
+      selCell = r * COLS + c;
+      renderRowLife();
+      return;
+    }
     selLife = selLife === r ? -1 : r;
     revealed.life = 1;
     drawLife(1);
@@ -1025,10 +1169,14 @@
     top.classList.toggle("show", y > hero.offsetHeight - 70);
     // si la persona scrollea a mano durante el video, se pausa y no la llevamos a ningún lado
     if (!video.paused && y > hero.offsetHeight * 0.5) { video.pause(); heroDone = true; }
-    updateStory();
-    const passed = head.getBoundingClientRect().bottom < 60;
-    sticky.classList.toggle("show", passed);
-    sticky.setAttribute("aria-hidden", String(!passed));
+    if (introReveal === 0 && $("#story").getBoundingClientRect().top < window.innerHeight * 0.9) kickStory();
+    // barra fija: tu resultado siempre a la vista desde que llegás al cálculo (si la tarjeta no está en pantalla)
+    const vh = window.innerHeight, hr = head.getBoundingClientRect();
+    const inCalc = $("#vida").getBoundingClientRect().top < vh * 0.85;
+    const resultVisible = hr.top < vh - 80 && hr.bottom > 70;
+    const show = inCalc && !resultVisible;
+    sticky.classList.toggle("show", show);
+    sticky.setAttribute("aria-hidden", String(!show));
   };
   window.addEventListener("scroll", () => {
     if (!scrollQueued) { scrollQueued = true; requestAnimationFrame(onScroll); }
@@ -1082,9 +1230,8 @@
   if ("scrollRestoration" in history) history.scrollRestoration = "manual";
   if (!location.hash) window.scrollTo(0, 0);
   onHoursChanged();
+  $("#presets").innerHTML = [1, 2, 3, 4, 5, 6, 8].map((h) => `<button type="button" class="pre" data-h="${h}">${h} h</button>`).join("");
   applyLang();
-  playHero();
-  setSoundUI();
   onScroll();
   gio.observe($("#grid-life"));
   gio.observe($("#grid-data"));
