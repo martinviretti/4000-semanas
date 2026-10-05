@@ -1,6 +1,6 @@
 /* Cache de la app para que funcione offline. Al publicar: subir VERSION acá y el ?v= de index.html (styles/app/data). */
-const VERSION = "semanas-v7";
-const FILES = ["./", "index.html", "styles.css?v=7", "app.js?v=7", "data.js?v=7", "manifest.webmanifest",
+const VERSION = "semanas-v8";
+const FILES = ["./", "index.html", "styles.css?v=8", "app.js?v=8", "data.js?v=8", "manifest.webmanifest",
   "fonts/Inter-var.woff2", "fonts/SpaceGrotesk-var.woff2", "icons/icon-192.png", "icons/icon-512.png",
   "video/poster_es.jpg", "video/poster_en.jpg"];
 

@@ -16,11 +16,11 @@
     <meta property="og:image" content="video/poster_es.jpg" />
     <link rel="preload" href="fonts/Inter-var.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="fonts/SpaceGrotesk-var.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="stylesheet" href="styles.css?v=7" />
+    <link rel="stylesheet" href="styles.css?v=8" />
   </head>
   <body>
     <header class="top" id="top">
-      <a class="brand" href="#story"><span class="brand-sq"></span><span data-i18n="brand">4.000 semanas</span></a>
+      <a class="brand" href="#top"><span class="brand-sq"></span><span data-i18n="brand">4.000 semanas</span></a>
       <nav class="top-nav" aria-label="Secciones">
         <a href="#vida" data-i18n="navCalc">Mi cuenta</a>
         <a href="#mas" data-i18n="navMore">Más datos</a>
@@ -68,30 +68,12 @@
 
       <!-- al terminar o saltar -->
       <div class="hero-end" id="hero-end" hidden>
-        <button type="button" class="start-btn" id="end-go"><span data-i18n="endGo">Ir a mi cuenta</span></button>
+        <span class="start-sq end-sq" aria-hidden="true"></span>
+        <h2 class="start-title" data-i18n="endQ">¿Te animás a hacer la cuenta con tu vida?</h2>
+        <p class="start-sub" data-i18n="endSub">Tu edad y tus horas de celular. Nada más.</p>
+        <button type="button" class="start-btn red-btn" id="end-go"><span data-i18n="endGo">Hacer mi cuenta</span> <span aria-hidden="true">→</span></button>
         <button type="button" class="start-skip" id="end-again" data-i18n="endAgain">Volver a ver el video</button>
       </div>
-    </section>
-
-    <!-- ───────── 2. HISTORIA (formato historias) ───────── -->
-    <section id="story" class="story" aria-label="Una vida en semanas">
-      <div class="story-progress" id="story-progress" aria-hidden="true"></div>
-      <div class="story-grid-wrap" id="story-tap">
-        <canvas id="grid-story" class="weeks" aria-hidden="true"></canvas>
-      </div>
-      <div class="story-key"><span class="mini-sq"></span><span data-i18n="key1">= 1 semana</span><span class="sep">·</span><span data-i18n="key2">1 fila = 1 año</span></div>
-      <div class="story-caption" aria-live="polite">
-        <p class="cap-kicker" id="cap-kicker"></p>
-        <p class="cap-big"><span class="cap-num" id="cap-num">4.160</span> <span class="cap-unit" id="cap-unit"></span></p>
-        <p class="cap-text" id="cap-text"></p>
-        <p class="cap-src" id="cap-src"></p>
-      </div>
-      <p class="swipe-hint" id="swipe-hint" aria-hidden="true"><span class="sw-arrow">‹</span><span data-i18n="swipeHint">Deslizá o tocá Siguiente</span><span class="sw-arrow r">›</span></p>
-      <div class="story-nav">
-        <button type="button" class="story-back" id="story-back" aria-label="Atrás">‹</button>
-        <button type="button" class="story-next" id="story-next"><span id="story-next-txt" data-i18n="next">Siguiente</span> <span aria-hidden="true">→</span></button>
-      </div>
-      <button type="button" class="story-skip" id="story-skip" data-i18n="storySkip">Saltar a mi cuenta</button>
     </section>
 
     <main>
@@ -101,10 +83,10 @@
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor" /></svg><span data-i18n="introAgain">Ver la introducción de nuevo</span>
         </button>
         <div class="friend friend-calc" id="friend-calc" hidden><p id="friend-calc-txt"></p></div>
-        <h2 class="h2" data-i18n="s1title">Hacé tu cuenta</h2>
+        <h2 class="h2" data-i18n="s1title">Tu cuenta</h2>
 
         <div class="card inputs is-example" id="inputs">
-          <p class="example-note" id="example-note" data-i18n="exampleNote">Ejemplo: 30 años y 4 h. Poné los tuyos.</p>
+          <p class="example-note" id="example-note" data-i18n="exampleNote">Poné tu edad y cuánto usás el celular por día.</p>
           <div class="row-in">
             <span class="ri-label" data-i18n="age">Tu edad</span>
             <div class="st-row">
@@ -133,13 +115,17 @@
             <ol id="guide-steps" class="steps"></ol>
             <p class="small muted" data-i18n="guideNote">Usá el promedio diario de la última semana.</p>
           </details>
+          <button type="button" class="reveal-btn" id="reveal"><span data-i18n="reveal">Ver mi resultado</span> <span aria-hidden="true">→</span></button>
         </div>
+
+        <div id="calc-out" hidden>
 
         <!-- resultado -->
         <div class="card result" id="life-head">
           <p class="res-lead" id="res-lead">De acá a los 80, el celular se lleva</p>
           <p class="res-big"><span id="r-phone" class="red">435</span> <span class="res-unit" data-i18n="resUnit">semanas</span></p>
           <p class="res-sub" id="r-human">8 años y 4 meses de tu vida</p>
+          <p class="res-awake" id="r-awake"></p>
           <div class="lifebar" id="lifebar" aria-hidden="true"></div>
           <p class="res-compare" id="r-compare"></p>
           <div class="duel" id="duel" hidden></div>
@@ -186,6 +172,7 @@
           </div>
           <p class="small muted" data-i18n="advNote">Trabajo: 48 semanas por año hasta jubilarte.</p>
         </details>
+        </div>
       </section>
 
       <!-- ───────── 4. MÁS DATOS ───────── -->
@@ -245,10 +232,6 @@
         <button type="button" class="btn ghost" id="replay" data-i18n="replay">Volver a ver el video</button>
       </section>
 
-      <footer class="foot">
-        <p class="small" data-i18n="footA">Cada número enlaza a su fuente.</p>
-        <p class="small muted" data-i18n="footB">Hecho a partir de los videos 4.000 semanas · Parte 1 y 2.</p>
-      </footer>
     </main>
 
     <div class="sticky-res" id="sticky" aria-hidden="true">
@@ -258,7 +241,7 @@
     </div>
     <div id="toast" class="toast" role="status" aria-live="polite"></div>
 
-    <script src="data.js?v=7"></script>
-    <script src="app.js?v=7"></script>
+    <script src="data.js?v=8"></script>
+    <script src="app.js?v=8"></script>
   </body>
 </html>

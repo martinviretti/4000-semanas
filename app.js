@@ -14,25 +14,17 @@
     es: {
       brand: "4.000 semanas", install: "Instalar", navCalc: "Mi cuenta", navMore: "Más datos",
       startTitle: "Este cuadrado es una semana de tu vida.", startSub: "¿Cuántas se lleva el celular?",
-      startBtn: "Empezar", startReturn: "Ir a mi cuenta", startNote: "Con sonido · 50 s", startSkip: "Saltar el video", startAgain: "Ver el video otra vez",
+      startBtn: "Empezar", startNote: "Con sonido · 50 s", startSkip: "Saltar el video",
       friendTxt: (name, w) => `A ${name} el celular le lleva <b>${w}</b> semanas. ¿Y a vos?`, friendDefault: "tu amigo/a",
-      skip: "Saltar", soundOn: "Activar sonido", soundOff: "Silenciar", endGo: "Ir a mi cuenta", endAgain: "Volver a ver el video",
-      key1: "= 1 semana", key2: "1 fila = 1 año", swipeHint: "Deslizá o tocá Siguiente",
-      next: "Siguiente", nextFinal: "Hacer mi cuenta", storySkip: "Saltar a mi cuenta",
-      story: [
-        { k: "Una vida de 80 años", u: "semanas", t: "Así entra una vida entera. Unas 4.000 semanas." },
-        { k: "Una persona promedio de 40 años", u: "semanas ya vividas", t: "La mitad ya pasó." },
-        { k: "Dormir", u: "semanas durmiendo", t: "8 h por día: un tercio de lo que le queda." },
-        { k: "Trabajar", u: "semanas trabajando", t: "40 h por semana, hasta los 65." },
-        { k: "El celular", u: "semanas en el celular", t: (hm, y) => `${hm} por día, lo normal a su edad. Más de ${y} años.`, src: "Fuente: DataReportal / GWI 2025 (cálculo propio)" },
-        { k: "Lo que le queda", u: "semanas libres", t: "Todo lo demás ya tiene dueño." },
-        { k: "Tu turno", u: "", t: "¿Y vos? Hacé tu cuenta." },
-      ],
-      s1title: "Hacé tu cuenta", introAgain: "Ver la introducción de nuevo", exampleNote: "Ejemplo: 30 años y 4 h. Poné los tuyos.",
+      skip: "Saltar", soundOn: "Activar sonido", soundOff: "Silenciar",
+      endQ: "¿Te animás a hacer la cuenta con tu vida?", endSub: "Tu edad y tus horas de celular. Nada más.", endGo: "Hacer mi cuenta", endAgain: "Volver a ver el video",
+      key1: "= 1 semana", key2: "1 fila = 1 año",
+      s1title: "Tu cuenta", introAgain: "Ver el video de nuevo", exampleNote: "Poné tu edad y cuánto usás el celular por día.", reveal: "Ver mi resultado",
       age: "Tu edad", ageUnit: "años", hours: "Celular por día",
       ariaAgeMinus: "Restar un año", ariaAgePlus: "Sumar un año", ariaHMinus: "Restar media hora", ariaHPlus: "Sumar media hora", ariaTarget: "Horas a las que bajarías",
       guideQ: "¿No sabés? Fijate en tu celular", guideNote: "Usá el promedio diario de la última semana.",
       resLead: (L) => `De acá a los ${L}, el celular se lleva`, resUnit: "semanas", resHuman: (hw) => `${hw} de tu vida`,
+      awake: (pct, d) => `Es el <b>${pct} %</b> de tu tiempo despierto: <b>${d} días enteros</b> por año.`,
       barCap: (n) => `Ya viviste ${n} semanas. La barra es lo que te queda.`,
       compareSame: "Usás lo mismo que la gente de tu edad.", compareMore: (d) => `Usás ${d} más que la gente de tu edad.`, compareLess: (d) => `Usás ${d} menos que la gente de tu edad.`,
       compareRef: (avg, range) => `Promedio ${range} años: ${avg} por día`, compareNone: "No hay datos de tu edad para comparar.",
@@ -104,7 +96,7 @@
       series: { tvHome: "TV por hogar · Nielsen, EE.UU.", tvPerson: "TV por persona · ATUS, EE.UU.", phone: "Celular por persona · eMarketer, EE.UU.", internet: "Internet (usuarios) · GWI, global" },
       chartTip: "Tocá un punto para ver el dato y su fuente.", smartphoneYear: "smartphone",
       arNote: "Para Argentina no hay horas por edad: el INDEC mide si usás internet, no cuánto.",
-      replay: "Volver a ver el video", footA: "Cada número enlaza a su fuente.", footB: "Hecho a partir de los videos 4.000 semanas · Parte 1 y 2.",
+      replay: "Volver a ver el video",
       steps: {
         ios: ["Abrí <b>Ajustes</b>.", "Tocá <b>Tiempo en pantalla</b>.", "Tocá <b>Ver toda la actividad de apps y sitios web</b>.", "Elegí <b>Semana</b>: arriba aparece tu <b>promedio diario</b>."],
         android: ["Abrí <b>Ajustes</b>.", "Entrá a <b>Bienestar digital y controles parentales</b>.", "Tocá el gráfico para ver el detalle por día."],
@@ -115,25 +107,17 @@
     en: {
       brand: "4,000 weeks", install: "Install", navCalc: "My numbers", navMore: "More data",
       startTitle: "This square is one week of your life.", startSub: "How many does your phone take?",
-      startBtn: "Start", startReturn: "Go to my numbers", startNote: "With sound · 50 s", startSkip: "Skip the video", startAgain: "Watch the video again",
+      startBtn: "Start", startNote: "With sound · 50 s", startSkip: "Skip the video",
       friendTxt: (name, w) => `${name === "your friend" ? "Your friend" : name}'s phone takes <b>${w}</b> weeks of their life. What about yours?`, friendDefault: "your friend",
-      skip: "Skip", soundOn: "Turn sound on", soundOff: "Mute", endGo: "Go to my numbers", endAgain: "Watch the video again",
-      key1: "= 1 week", key2: "1 row = 1 year", swipeHint: "Swipe or tap Next",
-      next: "Next", nextFinal: "Do my numbers", storySkip: "Skip to my numbers",
-      story: [
-        { k: "An 80-year life", u: "weeks", t: "A whole life fits here. About 4,000 weeks." },
-        { k: "An average 40-year-old", u: "weeks already lived", t: "Half are already gone." },
-        { k: "Sleep", u: "weeks asleep", t: "8 h a day: a third of what's left." },
-        { k: "Work", u: "weeks at work", t: "40 h a week, until 65." },
-        { k: "The phone", u: "weeks on the phone", t: (hm, y) => `${hm} a day, typical for their age. Over ${y} years.`, src: "Source: DataReportal / GWI 2025 (own calculation)" },
-        { k: "What's left", u: "free weeks", t: "Everything else is already spoken for." },
-        { k: "Your turn", u: "", t: "What about you? Do your numbers." },
-      ],
-      s1title: "Your turn", introAgain: "Watch the intro again", exampleNote: "Example: 30 years and 4 h. Enter yours.",
+      skip: "Skip", soundOn: "Turn sound on", soundOff: "Mute",
+      endQ: "Dare to run the numbers on your own life?", endSub: "Your age and your phone hours. That's it.", endGo: "Do my numbers", endAgain: "Watch the video again",
+      key1: "= 1 week", key2: "1 row = 1 year",
+      s1title: "Your numbers", introAgain: "Watch the video again", exampleNote: "Enter your age and how much you use your phone a day.", reveal: "See my result",
       age: "Your age", ageUnit: "years", hours: "Phone per day",
       ariaAgeMinus: "One year less", ariaAgePlus: "One year more", ariaHMinus: "Half an hour less", ariaHPlus: "Half an hour more", ariaTarget: "Hours you'd cut down to",
       guideQ: "Not sure? Check your phone", guideNote: "Use the daily average for the last week.",
       resLead: (L) => `From now to ${L}, your phone takes`, resUnit: "weeks", resHuman: (hw) => `${hw} of your life`,
+      awake: (pct, d) => `That's <b>${pct}%</b> of your waking time: <b>${d} full days</b> a year.`,
       barCap: (n) => `You've lived ${n} weeks. The bar is what's left.`,
       compareSame: "You use the same as people your age.", compareMore: (d) => `You use ${d} more than people your age.`, compareLess: (d) => `You use ${d} less than people your age.`,
       compareRef: (avg, range) => `Average age ${range}: ${avg} a day`, compareNone: "No data for your age to compare.",
@@ -205,7 +189,7 @@
       series: { tvHome: "TV per household · Nielsen, US", tvPerson: "TV per person · ATUS, US", phone: "Phone per person · eMarketer, US", internet: "Internet (users) · GWI, global" },
       chartTip: "Tap a point to see the figure and its source.", smartphoneYear: "smartphone",
       arNote: "There's no hours-by-age data for Argentina: INDEC measures whether you use the internet, not how much.",
-      replay: "Watch the video again", footA: "Every number links to its source.", footB: "Built from the videos 4,000 Weeks · Part 1 and 2.",
+      replay: "Watch the video again",
       steps: {
         ios: ["Open <b>Settings</b>.", "Tap <b>Screen Time</b>.", "Tap <b>See All App &amp; Website Activity</b>.", "Choose <b>Week</b>: your <b>daily average</b> is at the top."],
         android: ["Open <b>Settings</b>.", "Go to <b>Digital Wellbeing &amp; parental controls</b>.", "Tap the chart for the daily breakdown."],
@@ -366,7 +350,8 @@
     age: $("#age"), hours: $("#hours"), target: $("#target"),
     life: $("#life"), sleep: $("#sleep"), work: $("#work"), retire: $("#retire"),
   };
-  let model = null, exampleMode = true, focusCat = null, selLife = -1, tilesTouched = false;
+  const sticky = $("#sticky"), head = $("#life-head"), top = $("#top");
+  let model = null, exampleMode = true, shown = false, revealing = false, focusCat = null, selLife = -1, tilesTouched = false;
   const CAT_OF = { 1: "lived", 2: "sleep", 3: "work", 4: "phone", 6: "rec", 5: "free" };
   const lifelineAt = (age) => D.lifeline.find((s) => age >= s.from && age <= s.to) || null;
 
@@ -406,14 +391,14 @@
   }
 
   let resShown = null, resAnim = 0;
-  function countResult(to) {
+  function countResult(to, dur = 420) {
     const node = $("#r-phone");
     if (resShown == null || reducedMotion()) { resShown = to; node.textContent = fmtInt(to); return; }
     const from = resShown, t0 = performance.now(), id = ++resAnim;
     resShown = to;
     const step = (now) => {
       if (id !== resAnim) return;
-      const p = Math.min(1, (now - t0) / 420);
+      const p = Math.min(1, (now - t0) / dur);
       node.textContent = fmtInt(Math.round(from + (to - from) * (1 - Math.pow(1 - p, 3))));
       if (p < 1) requestAnimationFrame(step);
     };
@@ -432,12 +417,14 @@
     const m = model;
     // entradas
     $("#inputs").classList.toggle("is-example", exampleMode);
-    $("#example-note").hidden = !exampleMode;
+    $("#example-note").hidden = shown;
     $$("#presets .pre").forEach((b) => b.setAttribute("aria-pressed", String(parseFloat(b.dataset.h) === m.H)));
     // resultado
     $("#res-lead").textContent = t().resLead(m.L);
-    countResult(m.phone);
+    countResult(m.phone, revealing ? 1600 : 420);
     $("#r-human").textContent = t().resHuman(humanW(m.phone));
+    const awakeH = 24 - clamp(parseFloat(el.sleep.value) || 0, 0, 16);
+    $("#r-awake").innerHTML = m.H > 0 ? t().awake(fmtInt(Math.min(100, (m.H / awakeH) * 100)), fmtInt((m.H * 365) / 24)) : "";
     const remain = Math.max(1, m.remaining);
     $("#lifebar").innerHTML = [["sleep", m.sleep], ["work", m.work], ["phone", m.phone], ["free", m.free]]
       .filter(([, v]) => v > 0)
@@ -543,7 +530,7 @@
   }
   function renderDuel() {
     const box = $("#duel");
-    if (!friend || exampleMode) { box.hidden = true; return; }
+    if (!friend || !shown) { box.hidden = true; return; }
     box.hidden = false;
     box.innerHTML = `<div><b class="red">${fmtInt(model.phone)}</b><span>${t().duelYou}</span></div><div><b>${fmtInt(friend.phone)}</b><span>${friend.name || t().friendDefault}</span></div>`;
   }
@@ -736,10 +723,12 @@
   }
   const goCalc = () => smoothScrollTo($("#vida").getBoundingClientRect().top + window.scrollY - 56, 900);
   $$('a[href^="#"]').forEach((a) => a.addEventListener("click", (e) => {
-    const target = $(a.getAttribute("href"));
+    const href = a.getAttribute("href");
+    if (href === "#top") { e.preventDefault(); return smoothScrollTo(0, 900); }
+    const target = $(href);
     if (!target) return;
     e.preventDefault();
-    smoothScrollTo(target.getBoundingClientRect().top + window.scrollY - (a.getAttribute("href") === "#story" ? 0 : 56), 900);
+    smoothScrollTo(target.getBoundingClientRect().top + window.scrollY - 56, 900);
   }));
 
   // ───────────────── 1. inicio + video ─────────────────
@@ -791,7 +780,8 @@
     setSoundUI();
     playHero();
   }
-  function finishHero(scroll = true) {
+  /* al terminar o saltar el video: el cartel "¿Te animás a hacer la cuenta?" */
+  function finishHero() {
     if (heroDone) return;
     heroDone = true;
     heroStarted = true;
@@ -801,8 +791,6 @@
     $("#hero-top").hidden = true;
     $("#hero-play").hidden = true;
     $("#hero-end").hidden = false;
-    kickStory();
-    if (scroll) smoothScrollTo($("#story").offsetTop, 1300);
   }
   $("#start").addEventListener("click", startHero);
   $("#start-skip").addEventListener("click", () => finishHero());
@@ -824,180 +812,6 @@
   $("#replay").addEventListener("click", showIntro);
   $("#intro-again").addEventListener("click", showIntro);
 
-  // ───────────────── 2. historia (formato historias) ─────────────────
-  const story = computeModel({ L: 80, A: 40, H: 3.75, H2: 3.75, S: 8, W: 40, R: 65 });
-  const sRank = new Float32Array(story.cat.length);
-  {
-    const tot = {}, cnt = {};
-    for (const v of story.cat) tot[v] = (tot[v] || 0) + 1;
-    story.cat.forEach((v, i) => { cnt[v] = (cnt[v] || 0) + 1; sRank[i] = cnt[v] / tot[v]; });
-  }
-  const STEP_TARGETS = [
-    { 1: 0, 2: 0, 3: 0, 4: 0, dim: 0 }, { 1: 1, 2: 0, 3: 0, 4: 0, dim: 0 }, { 1: 1, 2: 1, 3: 0, 4: 0, dim: 0 },
-    { 1: 1, 2: 1, 3: 1, 4: 0, dim: 0 }, { 1: 1, 2: 1, 3: 1, 4: 1, dim: 0 }, { 1: 1, 2: 1, 3: 1, 4: 1, dim: 1 },
-    { 1: 1, 2: 1, 3: 1, 4: 1, dim: 0 },
-  ];
-  const STEP_NUM = [4160, story.lived, story.sleep, story.work, story.phone, story.free, null];
-  const STEP_COLOR = ["#ffffff", "#a3a3a3", COL.sleep, COL.work, COL.phone, "#ffffff", "#ffffff"];
-  const STORY_COL = { 1: COL.lived, 2: COL.sleep, 3: COL.work, 4: COL.phone };
-  const LAST = STEP_TARGETS.length - 1;
-  const sProg = { 1: 0, 2: 0, 3: 0, 4: 0, dim: 0 };
-  let sStep = -1, introReveal = 0, shownNum = 0;
-  $("#story-progress").innerHTML = STEP_TARGETS.map(() => "<i></i>").join("");
-
-  function drawStory() {
-    const cv = $("#grid-story"), wrap = cv.parentElement;
-    const dpr = window.devicePixelRatio || 1;
-    const pitch = Math.max(2, Math.min(wrap.clientWidth / COLS, wrap.clientHeight / 80));
-    const w = Math.floor(COLS * pitch), h = Math.floor(80 * pitch);
-    if (cv.width !== Math.round(w * dpr) || cv.height !== Math.round(h * dpr)) {
-      cv.width = Math.round(w * dpr);
-      cv.height = Math.round(h * dpr);
-      cv.style.width = w + "px";
-      cv.style.height = h + "px";
-    }
-    const g = cv.getContext("2d");
-    g.setTransform(dpr, 0, 0, dpr, 0, 0);
-    g.clearRect(0, 0, w, h);
-    const cell = pitch * 0.78, n = story.cat.length, shown = Math.floor(n * introReveal);
-    for (let i = 0; i < shown; i++) {
-      const k = story.cat[i];
-      let fill = COL.free, a = 1;
-      if (k !== 5) {
-        if (sRank[i] <= sProg[k]) fill = STORY_COL[k];
-        a = 1 - 0.82 * sProg.dim;
-      }
-      g.globalAlpha = a;
-      g.fillStyle = fill;
-      g.fillRect((i % COLS) * pitch, Math.floor(i / COLS) * pitch, cell, cell);
-    }
-    g.globalAlpha = 1;
-  }
-
-  let storyRunning = false, storyLast = 0;
-  function storyTick(now) {
-    const dt = storyLast ? Math.min(64, now - storyLast) / 1000 : 0.016;
-    storyLast = now;
-    const tg = STEP_TARGETS[Math.max(0, sStep)];
-    let moving = false;
-    for (const k of ["1", "2", "3", "4", "dim"]) {
-      const d = tg[k] - sProg[k];
-      if (Math.abs(d) > 0.0005) { sProg[k] += Math.sign(d) * Math.min(Math.abs(d), dt / 0.85); moving = true; } else sProg[k] = tg[k];
-    }
-    if (introReveal < 1) { introReveal = Math.min(1, introReveal + dt / 1.1); moving = true; }
-    drawStory();
-    if (moving) requestAnimationFrame(storyTick);
-    else { storyRunning = false; storyLast = 0; }
-  }
-  function kickStory() {
-    if (reducedMotion()) {
-      Object.assign(sProg, STEP_TARGETS[Math.max(0, sStep)]);
-      introReveal = 1;
-      return drawStory();
-    }
-    if (!storyRunning) { storyRunning = true; storyLast = 0; requestAnimationFrame(storyTick); }
-  }
-
-  let countAnim = 0;
-  function countTo(node, to, color) {
-    node.style.color = color;
-    if (to == null) { node.textContent = ""; return; }
-    const from = shownNum, t0 = performance.now(), id = ++countAnim;
-    const step = (now) => {
-      if (id !== countAnim) return;
-      const p = Math.min(1, (now - t0) / 650);
-      node.textContent = fmtInt(Math.round(from + (to - from) * (1 - Math.pow(1 - p, 3))));
-      if (p < 1) requestAnimationFrame(step);
-      else shownNum = to;
-    };
-    requestAnimationFrame(step);
-  }
-
-  function setStoryStep(i, force = false) {
-    i = clamp(i, 0, LAST);
-    if (i === sStep && !force) return;
-    sStep = i;
-    const st = t().story[i];
-    if (!st) return;
-    const cap = $(".story-caption");
-    cap.classList.remove("cap-anim");
-    void cap.offsetWidth;
-    cap.classList.add("cap-anim");
-    $("#cap-kicker").textContent = st.k;
-    $("#cap-unit").textContent = st.u;
-    $("#cap-text").textContent = typeof st.t === "function" ? st.t(humanH(3.75), Math.floor(story.phone / 52)) : st.t;
-    $("#cap-src").textContent = st.src || "";
-    countTo($("#cap-num"), STEP_NUM[i], STEP_COLOR[i]);
-    $$("#story-progress i").forEach((d, k) => { d.classList.toggle("done", k < i); d.classList.toggle("on", k === i); });
-    $("#story-back").disabled = i === 0;
-    if (i > 0) $("#swipe-hint").classList.add("off");
-    $("#story-next").classList.toggle("final", i === LAST);
-    $("#story-next-txt").textContent = i === LAST ? t().nextFinal : t().next;
-    $("#story-skip").hidden = i === LAST;
-    if (i === LAST) markSeen();
-    kickStory();
-  }
-  const storyNext = () => (sStep >= LAST ? goCalc() : setStoryStep(sStep + 1));
-  const storyBack = () => setStoryStep(sStep - 1);
-  $("#story-next").addEventListener("click", storyNext);
-  $("#story-back").addEventListener("click", storyBack);
-  $("#story-skip").addEventListener("click", goCalc);
-  $("#story-tap").addEventListener("click", (e) => {
-    const r = e.currentTarget.getBoundingClientRect();
-    (e.clientX - r.left < r.width * 0.3 ? storyBack : storyNext)();
-  });
-
-  // deslizar con el dedo (o arrastrar con el mouse): el contenido sigue al gesto
-  const SWIPE_MOVERS = () => [$("#story-tap"), $(".story-caption")];
-  let drag = null, dragMoved = false;
-  const setDragX = (dx, animate) => SWIPE_MOVERS().forEach((n) => {
-    n.style.transition = animate ? "transform .28s ease, opacity .28s ease" : "none";
-    n.style.transform = dx ? `translateX(${dx}px)` : "";
-    n.style.opacity = dx ? String(Math.max(0.35, 1 - Math.abs(dx) / 500)) : "";
-  });
-  function slideTo(dir) {
-    const w = Math.min(window.innerWidth, 560);
-    setDragX(-dir * w * 0.6, true);
-    setTimeout(() => {
-      dir > 0 ? storyNext() : storyBack();
-      setDragX(dir * w * 0.4, false);
-      requestAnimationFrame(() => requestAnimationFrame(() => setDragX(0, true)));
-    }, 180);
-  }
-  const story$ = $("#story");
-  story$.addEventListener("pointerdown", (e) => {
-    if (e.target.closest("button, a")) return;
-    drag = { x: e.clientX, y: e.clientY, id: e.pointerId, horizontal: null };
-    dragMoved = false;
-  });
-  story$.addEventListener("pointermove", (e) => {
-    if (!drag || e.pointerId !== drag.id) return;
-    const dx = e.clientX - drag.x, dy = e.clientY - drag.y;
-    if (drag.horizontal === null && (Math.abs(dx) > 8 || Math.abs(dy) > 8)) drag.horizontal = Math.abs(dx) > Math.abs(dy);
-    if (!drag.horizontal) return;
-    dragMoved = true;
-    const atEdge = (dx > 0 && sStep === 0) || (dx < 0 && sStep === LAST);
-    setDragX(atEdge ? dx * 0.25 : dx, false);
-  });
-  story$.addEventListener("pointerup", (e) => {
-    if (!drag || e.pointerId !== drag.id) return;
-    const dx = e.clientX - drag.x, horizontal = drag.horizontal;
-    drag = null;
-    if (!horizontal) return;
-    if (dx < -60 && sStep < LAST) slideTo(1);
-    else if (dx > 60 && sStep > 0) slideTo(-1);
-    else if (dx < -60 && sStep === LAST) { setDragX(0, true); goCalc(); }
-    else setDragX(0, true);
-  });
-  story$.addEventListener("pointercancel", () => { drag = null; setDragX(0, true); });
-  $("#story-tap").addEventListener("click", (e) => { if (dragMoved) { e.stopImmediatePropagation(); dragMoved = false; } }, true);
-  document.addEventListener("keydown", (e) => {
-    const r = story$.getBoundingClientRect();
-    if (r.top > window.innerHeight * 0.5 || r.bottom < window.innerHeight * 0.5) return;
-    if (e.key === "ArrowRight") storyNext();
-    if (e.key === "ArrowLeft") storyBack();
-  });
-
   // ───────────────── idioma ─────────────────
   function applyLang() {
     document.documentElement.lang = LANG;
@@ -1016,7 +830,6 @@
     renderStartScreen();
     renderFriend();
     renderAll();
-    setStoryStep(Math.max(0, sStep), true);
   }
   function renderAll() {
     renderLife();
@@ -1025,6 +838,30 @@
     renderChart();
     renderGuide();
   }
+
+  // ───────────────── revelar el resultado ─────────────────
+  const saveCalc = () => { if (shown) localStorage.setItem("calc", JSON.stringify({ a: el.age.value, h: el.hours.value })); };
+  function revealResult(animate = true) {
+    shown = true;
+    exampleMode = false;
+    $("#calc-out").hidden = false;
+    $("#reveal").hidden = true;
+    const out = $("#calc-out");
+    out.classList.remove("reveal-anim");
+    if (animate && !reducedMotion()) {
+      void out.offsetWidth;
+      out.classList.add("reveal-anim");
+      resShown = 0; // el número sube desde 0
+    }
+    revealing = animate;
+    renderLife();
+    revealing = false;
+    renderVersus();
+    saveCalc();
+    if (animate) smoothScrollTo(head.getBoundingClientRect().top + window.scrollY - 64, 900);
+    requestAnimationFrame(onScroll);
+  }
+  $("#reveal").addEventListener("click", () => revealResult(true));
 
   // ───────────────── eventos de tu cuenta ─────────────────
   const leaveExample = () => {
@@ -1036,6 +873,7 @@
     el.target.value = el.hours.value; // el "¿y si bajás?" arranca sin recuperar nada
   };
   const rerender = () => {
+    saveCalc();
     renderLife();
     renderVersus();
     if (revealed.data >= 1) drawData(1);
@@ -1204,8 +1042,7 @@
   }
   $$(".share-btn").forEach((b) => b.addEventListener("click", doShare));
 
-  // ───────────────── scroll: header, video, historia, barra fija ─────────────────
-  const sticky = $("#sticky"), head = $("#life-head"), top = $("#top");
+  // ───────────────── scroll: header, video, barra fija ─────────────────
   let scrollQueued = false;
   const visible = (n, vh) => { const r = n.getBoundingClientRect(); return r.bottom > 0 && r.top < vh && r.height > 0; };
   function onScroll() {
@@ -1213,14 +1050,13 @@
     const y = window.scrollY, vh = window.innerHeight;
     top.classList.toggle("show", y > hero.offsetHeight - 70);
     // si scrollean a mano durante el video, se pausa y queda la pantalla de fin
-    if (heroStarted && !heroDone && !video.paused && y > hero.offsetHeight * 0.5) finishHero(false);
-    if (introReveal === 0 && story$.getBoundingClientRect().top < vh * 0.9) kickStory();
+    if (heroStarted && !heroDone && !video.paused && y > hero.offsetHeight * 0.5) finishHero();
     // barra fija: solo con tus datos, si el resultado no está en pantalla y no hay otro "Compartir" a la vista
     const hr = head.getBoundingClientRect();
     const inCalc = $("#vida").getBoundingClientRect().top < vh * 0.85;
     const resultVisible = hr.top < vh - 80 && hr.bottom > 70;
     const shareVisible = $$("main .share-btn").some((b) => visible(b, vh));
-    const show = !exampleMode && inCalc && !resultVisible && !shareVisible;
+    const show = shown && inCalc && !resultVisible && !shareVisible;
     sticky.classList.toggle("show", show);
     sticky.setAttribute("aria-hidden", String(!show));
   }
@@ -1253,7 +1089,6 @@
       if (model && revealed.life >= 1) drawLife(1);
       if (model && revealed.data >= 1) drawData(1);
     }
-    drawStory();
   }).observe(document.body);
 
   // ───────────────── instalar como app ─────────────────
@@ -1286,8 +1121,14 @@
   }
   if (!location.hash) window.scrollTo(0, 0);
   $("#presets").innerHTML = [1, 2, 3, 4, 5, 6, 8, 10].map((h) => `<button type="button" class="pre" data-h="${h}">${h} h</button>`).join("");
+  const saved = (() => { try { return JSON.parse(localStorage.getItem("calc") || "null"); } catch (_) { return null; } })();
+  if (saved && saved.a != null && saved.h != null) {
+    el.age.value = String(clamp(parseInt(saved.a) || 0, 0, 79));
+    el.hours.value = String(clamp(parseFloat(saved.h) || 0, 0, 16));
+  }
   onHoursChanged();
   applyLang();
+  if (saved) revealResult(false);
   onScroll();
   gio.observe($("#grid-life"));
   gio.observe($("#grid-data"));
