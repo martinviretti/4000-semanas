@@ -1,5 +1,7 @@
 # 4.000 semanas — app web (PWA)
 
+**Online:** https://martinviretti.github.io/4000-semanas/ (repo: https://github.com/martinviretti/4000-semanas)
+
 App estática, instalable en el celular, con la estética de los videos *4,000 Weeks* (parte 1 y 2).
 Sin build ni backend: HTML + CSS + JS. Funciona offline después de la primera visita.
 
