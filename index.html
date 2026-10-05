@@ -22,46 +22,58 @@
     <header class="top" id="top">
       <a class="brand" href="#story"><span class="brand-sq"></span><span data-i18n="brand">4.000 semanas</span></a>
       <nav class="top-nav" aria-label="Secciones">
-        <a href="#vida" data-i18n="navCalc">Mi cálculo</a>
+        <a href="#vida" data-i18n="navCalc">Mi cuenta</a>
         <a href="#mas" data-i18n="navMore">Más datos</a>
       </nav>
       <div class="top-actions">
         <button id="install" class="chip" hidden data-i18n="install">Instalar</button>
-        <button id="lang" class="chip" aria-label="Cambiar idioma / Change language">EN</button>
+        <button id="lang" class="chip lang-btn" aria-label="Cambiar idioma / Change language">EN</button>
       </div>
     </header>
 
-    <!-- ───────── 1. INICIO + VIDEO (el toque en "Empezar" habilita el sonido) ───────── -->
+    <!-- ───────── 1. INICIO + VIDEO ───────── -->
     <section id="hero" class="hero" aria-label="Video de introducción">
       <video id="hero-video" playsinline preload="auto" poster="video/poster_es.jpg">
         <source id="video-src" src="video/weeks_es.mp4" type="video/mp4" />
       </video>
-      <div class="hero-shade"></div>
 
+      <!-- pantalla de inicio: el toque en "Empezar" habilita el sonido -->
       <div class="hero-start" id="hero-start">
+        <button type="button" class="chip lang-btn start-lang" id="lang-start" aria-label="Cambiar idioma / Change language">EN</button>
+        <div class="friend" id="friend" hidden>
+          <p id="friend-txt"></p>
+        </div>
         <span class="start-sq" aria-hidden="true"></span>
         <h1 class="start-title" data-i18n="startTitle">Este cuadrado es una semana de tu vida.</h1>
-        <p class="start-sub" data-i18n="startSub">¿Cuántas te quedan? ¿Y cuántas se lleva el celular?</p>
+        <p class="start-sub" data-i18n="startSub">¿Cuántas se lleva el celular?</p>
         <button type="button" class="start-btn" id="start">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor" /></svg>
-          <span data-i18n="startBtn">Empezar</span>
+          <span id="start-txt" data-i18n="startBtn">Empezar</span>
         </button>
-        <p class="start-note"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z" fill="currentColor" /><path d="M16.5 8.5a5 5 0 0 1 0 7" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" /></svg><span data-i18n="startNote">Con sonido · 50 segundos</span></p>
-        <button type="button" class="start-skip" id="start-skip" data-i18n="startSkip">Ver sin el video</button>
+        <p class="start-note" id="start-note"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z" fill="currentColor" /><path d="M16.5 8.5a5 5 0 0 1 0 7" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" /></svg><span data-i18n="startNote">Con sonido · 50 s</span></p>
+        <button type="button" class="start-skip" id="start-skip" data-i18n="startSkip">Saltar el video</button>
       </div>
 
-      <button type="button" class="hero-sound" id="sound" aria-pressed="true" hidden>
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z" fill="currentColor" /><path id="sound-x" d="M16 9l5 6M21 9l-5 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" hidden /><path id="sound-w" d="M16.5 8.5a5 5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" /></svg>
-        <span data-i18n="soundOff">Silenciar</span>
-      </button>
-      <button type="button" class="hero-play" id="hero-play" hidden aria-label="Reproducir"><span class="play-ic"></span></button>
-      <div class="hero-bottom" id="hero-bottom" hidden>
-        <button type="button" class="hero-skip" id="skip" data-i18n="skip">Saltar</button>
+      <!-- controles durante el video: todo arriba, nada tapa los subtítulos de abajo -->
+      <div class="hero-top" id="hero-top" hidden>
         <div class="hero-bar"><i id="hero-bar"></i></div>
+        <div class="hero-ctrl">
+          <button type="button" class="hero-sound" id="sound" aria-pressed="true" aria-label="Silenciar">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z" fill="currentColor" /><path id="sound-x" d="M16 9l5 6M21 9l-5 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" hidden /><path id="sound-w" d="M16.5 8.5a5 5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" /></svg>
+          </button>
+          <button type="button" class="hero-skip" id="skip"><span data-i18n="skip">Saltar</span> ›</button>
+        </div>
+      </div>
+      <button type="button" class="hero-play" id="hero-play" hidden aria-label="Reproducir"><span class="play-ic"></span></button>
+
+      <!-- al terminar o saltar -->
+      <div class="hero-end" id="hero-end" hidden>
+        <button type="button" class="start-btn" id="end-go"><span data-i18n="endGo">Ir a mi cuenta</span></button>
+        <button type="button" class="start-skip" id="end-again" data-i18n="endAgain">Volver a ver el video</button>
       </div>
     </section>
 
-    <!-- ───────── 2. HISTORIA (formato historias: tocar / "Siguiente") ───────── -->
+    <!-- ───────── 2. HISTORIA (formato historias) ───────── -->
     <section id="story" class="story" aria-label="Una vida en semanas">
       <div class="story-progress" id="story-progress" aria-hidden="true"></div>
       <div class="story-grid-wrap" id="story-tap">
@@ -79,36 +91,35 @@
         <button type="button" class="story-back" id="story-back" aria-label="Atrás">‹</button>
         <button type="button" class="story-next" id="story-next"><span id="story-next-txt" data-i18n="next">Siguiente</span> <span aria-hidden="true">→</span></button>
       </div>
-      <button type="button" class="story-skip" id="story-skip" data-i18n="storySkip">Ir directo a mi cálculo</button>
+      <button type="button" class="story-skip" id="story-skip" data-i18n="storySkip">Saltar a mi cuenta</button>
     </section>
 
     <main>
-      <!-- ───────── 3. TU CÁLCULO ───────── -->
+      <!-- ───────── 3. TU CUENTA ───────── -->
       <section id="vida" class="sec">
-        <p class="kicker" data-i18n="s1kicker">Tu vida en semanas</p>
-        <h2 class="h2" data-i18n="s1title">¿Y la tuya? Hacé la cuenta.</h2>
+        <h2 class="h2" data-i18n="s1title">Hacé tu cuenta</h2>
 
-        <div class="card inputs">
-          <div class="q">
-            <span class="q-label" data-i18n="qAge">¿Cuántos años tenés?</span>
+        <div class="card inputs is-example" id="inputs">
+          <p class="example-note" id="example-note" data-i18n="exampleNote">Ejemplo: 30 años y 4 h. Poné los tuyos.</p>
+          <div class="row-in">
+            <span class="ri-label" data-i18n="age">Tu edad</span>
             <div class="st-row">
-              <button type="button" class="st-btn" data-step="age:-1" aria-label="−1">−</button>
-              <input id="age" class="st-val" type="number" inputmode="numeric" min="0" max="79" step="1" value="30" aria-label="Edad" />
-              <button type="button" class="st-btn" data-step="age:1" aria-label="+1">+</button>
+              <button type="button" class="st-btn" data-step="age:-1" data-i18n-aria="ariaAgeMinus" aria-label="Restar un año">−</button>
+              <label class="st-box"><input id="age" class="st-val" type="number" inputmode="numeric" min="0" max="79" step="1" value="30" data-i18n-aria="age" aria-label="Tu edad" /><span class="st-unit" data-i18n="ageUnit">años</span></label>
+              <button type="button" class="st-btn" data-step="age:1" data-i18n-aria="ariaAgePlus" aria-label="Sumar un año">+</button>
             </div>
           </div>
-          <div class="q">
-            <span class="q-label" data-i18n="qHours">¿Cuántas horas por día usás el celular?</span>
+          <div class="row-in">
+            <span class="ri-label" data-i18n="hours">Celular por día</span>
             <div class="st-row">
-              <button type="button" class="st-btn" data-step="hours:-0.5" aria-label="−0,5">−</button>
-              <input id="hours" class="st-val red" type="number" inputmode="decimal" min="0" max="16" step="0.5" value="4" aria-label="Horas por día" />
-              <button type="button" class="st-btn" data-step="hours:0.5" aria-label="+0,5">+</button>
+              <button type="button" class="st-btn" data-step="hours:-0.5" data-i18n-aria="ariaHMinus" aria-label="Restar media hora">−</button>
+              <label class="st-box"><input id="hours" class="st-val red" type="number" inputmode="decimal" min="0" max="16" step="0.5" value="4" data-i18n-aria="hours" aria-label="Celular por día" /><span class="st-unit">h</span></label>
+              <button type="button" class="st-btn" data-step="hours:0.5" data-i18n-aria="ariaHPlus" aria-label="Sumar media hora">+</button>
             </div>
-            <div class="presets" id="presets" role="group" aria-label="Horas típicas"></div>
           </div>
-          <input id="hours-range" type="range" min="0" max="12" step="0.25" value="4" class="range-red" hidden aria-hidden="true" tabindex="-1" />
+          <div class="presets" id="presets" role="group" data-i18n-aria="hours" aria-label="Celular por día"></div>
           <details class="guide" id="guide">
-            <summary data-i18n="guideQ">¿No sabés cuántas horas usás? Miralo en tu celular</summary>
+            <summary data-i18n="guideQ">¿No sabés? Fijate en tu celular</summary>
             <div class="guide-tabs">
               <button type="button" class="gtab is-on" data-os="ios">iPhone</button>
               <button type="button" class="gtab" data-os="android">Android</button>
@@ -116,90 +127,93 @@
               <button type="button" class="gtab" data-os="xiaomi">Xiaomi</button>
             </div>
             <ol id="guide-steps" class="steps"></ol>
-            <p class="small muted" data-i18n="guideNote">Los nombres de los menús pueden variar según la marca y la versión. Usá el promedio diario de la última semana.</p>
+            <p class="small muted" data-i18n="guideNote">Usá el promedio diario de la última semana.</p>
           </details>
         </div>
 
-        <!-- resultado: se entiende en 2 segundos -->
+        <!-- resultado -->
         <div class="card result" id="life-head">
-          <p class="res-lead" data-i18n="resLead">Si seguís así, vas a pasar</p>
+          <p class="res-lead" id="res-lead">De acá a los 80, el celular se lleva</p>
           <p class="res-big"><span id="r-phone" class="red">435</span> <span class="res-unit" data-i18n="resUnit">semanas</span></p>
-          <p class="res-sub"><span data-i18n="resSub">mirando el celular</span> · <b id="r-human">8 años y 4 meses</b></p>
-          <div class="lifebar" id="lifebar" aria-label="Tu vida en porcentajes"></div>
-          <ul class="lifebar-legend" id="lifebar-legend"></ul>
+          <p class="res-sub" id="r-human">8 años y 4 meses de tu vida</p>
+          <div class="lifebar" id="lifebar" aria-hidden="true"></div>
           <p class="res-compare" id="r-compare"></p>
+          <div class="duel" id="duel" hidden></div>
+          <div class="feel" id="feel"></div>
+          <p class="sr-only" id="res-live" aria-live="polite"></p>
+          <button type="button" class="btn share-btn" data-i18n="share">Compartir mi grilla</button>
         </div>
 
+        <!-- grilla -->
         <div class="card grid-card" id="life-card">
           <div class="gc-head">
             <h3 class="h3" data-i18n="gridTitle">Tu vida en cuadraditos</h3>
-            <div class="seg" role="tablist" id="view-toggle">
-              <button type="button" role="tab" data-view="blocks" aria-selected="true" data-i18n="viewBlocks">Por cantidad</button>
-              <button type="button" role="tab" data-view="years" aria-selected="false" data-i18n="viewYears">Año por año</button>
-            </div>
+            <span class="gc-key"><span class="mini-sq"></span><span data-i18n="key1">= 1 semana</span> · <span data-i18n="key2">1 fila = 1 año</span></span>
           </div>
-          <p class="explain" id="view-explain"></p>
-          <div class="chips" id="chips" role="group"></div>
+          <button type="button" class="lived-row" id="lived-row" data-cat="lived" aria-pressed="false"></button>
+          <p class="tiles-h" id="tiles-h"></p>
+          <div class="tiles" id="tiles" role="group"></div>
+          <button type="button" class="tile-rec" id="tile-rec" data-cat="phone" hidden></button>
           <p class="focus-line" id="focus-line"></p>
           <div class="grid-wrap" id="life-wrap">
-            <canvas id="grid-life" class="weeks" aria-label="Grilla de semanas de tu vida"></canvas>
+            <canvas id="grid-life" class="weeks" aria-hidden="true"></canvas>
           </div>
           <p class="row-info" id="row-info-life"></p>
+          <p class="sr-only" id="grid-summary"></p>
         </div>
 
         <div class="card whatif">
-          <div class="field-top"><span data-i18n="whatif">¿Y si bajás a…</span><output id="target-out" class="out">2 h</output></div>
-          <input id="target" type="range" min="0" max="4" step="0.25" value="2" aria-label="Horas objetivo" />
-          <p class="recover"><span data-i18n="recover1">Recuperás</span> <b id="r-recover" class="num-inline">218</b> <span data-i18n="recover2">semanas</span> <span id="r-recover-y" class="muted"></span></p>
-          <p class="small muted" data-i18n="recoverNote">Las recuperadas se ven en la grilla como cuadrados rojos huecos.</p>
-          <button type="button" class="btn share-btn" data-i18n="share">Compartir mi resultado</button>
+          <p class="wi-q" id="wi-q">¿Y si bajás a 2 h?</p>
+          <div class="wi-range">
+            <span class="wi-end">0 h</span>
+            <input id="target" type="range" min="0" max="4" step="0.25" value="4" data-i18n-aria="ariaTarget" aria-label="Horas objetivo" />
+            <span class="wi-end" id="wi-max">4 h</span>
+          </div>
+          <p class="recover" id="recover"></p>
         </div>
 
         <details class="card adv">
-          <summary data-i18n="adv">Ajustar supuestos (sueño, trabajo, esperanza de vida)</summary>
+          <summary data-i18n="adv">Cambiar supuestos</summary>
           <div class="adv-grid">
             <label class="mini"><span data-i18n="life">Esperanza de vida</span><input id="life" type="number" min="50" max="100" value="80" inputmode="numeric" /></label>
             <label class="mini"><span data-i18n="sleep">Horas de sueño</span><input id="sleep" type="number" min="0" max="12" step="0.5" value="8" inputmode="decimal" /></label>
             <label class="mini"><span data-i18n="work">Horas de trabajo / semana</span><input id="work" type="number" min="0" max="80" value="40" inputmode="numeric" /></label>
             <label class="mini"><span data-i18n="retire">Te jubilás a los</span><input id="retire" type="number" min="40" max="80" value="65" inputmode="numeric" /></label>
           </div>
-          <p class="small muted" data-i18n="advNote">Dormir = horas de sueño sobre lo que te queda; trabajo = 48 semanas por año hasta la jubilación.</p>
+          <p class="small muted" data-i18n="advNote">Trabajo: 48 semanas por año hasta jubilarte.</p>
         </details>
       </section>
 
       <!-- ───────── 4. MÁS DATOS ───────── -->
       <section id="mas" class="sec">
-        <p class="kicker" data-i18n="moreKicker">Para los curiosos</p>
         <h2 class="h2" data-i18n="moreTitle">¿Querés más datos?</h2>
-        <p class="lead" data-i18n="moreLead">Todo lo que hay detrás de los números, por tema. Abrí el que te interese.</p>
 
         <details class="topic" id="t-age">
-          <summary><span class="t-ic t-ic-age"></span><span class="t-txt"><b data-i18n="tAge">Por edad</b><small data-i18n="tAgeSub">Cuánto usa el celular cada generación</small></span></summary>
+          <summary><span class="t-ic t-ic-age"></span><span class="t-txt"><b data-i18n="tAge">Por edad</b><small data-i18n="tAgeSub">Cuánto lo usa cada edad</small></span></summary>
           <div class="topic-body">
             <div class="versus" id="versus"></div>
             <div class="grid-card plain">
-              <div class="grid-head">
-                <div class="big-stat"><span id="l-total" class="num red">0</span><span class="unit" data-i18n="weeksPhone">semanas en el celular</span></div>
-                <div class="big-sub" id="l-years"></div>
-              </div>
-              <p class="explain" data-i18n="dataExplain">Una vida de 80 años donde cada edad usa el celular lo que hoy usa la gente de esa edad. Lo rojo de cada fila son las semanas de ese año que se van en la pantalla.</p>
+              <p class="typ-big"><span class="typ-label" data-i18n="typLabel">Una vida típica:</span> <span id="l-total" class="typ-num">0</span> <span class="typ-unit" data-i18n="resUnit">semanas</span></p>
+              <p class="big-sub" id="l-years"></p>
+              <p class="explain" data-i18n="dataExplain">Una vida si a cada edad usaras el celular como la gente de esa edad hoy.</p>
               <div class="grid-wrap" id="data-wrap"><canvas id="grid-data" class="weeks" aria-label="Grilla de una vida típica"></canvas></div>
-              <p class="row-info" id="row-info-data" data-i18n="tapRow">Tocá una fila para ver ese año en detalle.</p>
+              <p class="row-info" id="row-info-data"></p>
               <ul class="legend" id="legend-data"></ul>
             </div>
-            <p class="sub-h" data-i18n="stagesH">Etapa por etapa · tocá una para verla en la grilla</p>
+            <p class="sub-h" data-i18n="stagesH">Por etapa · tocá una para verla arriba</p>
             <div id="groups" class="groups"></div>
           </div>
         </details>
 
         <details class="topic" id="t-hist">
-          <summary><span class="t-ic t-ic-hist"></span><span class="t-txt"><b data-i18n="tHist">Antes y ahora</b><small data-i18n="tHistSub">50 años de pantallas, década por década</small></span></summary>
+          <summary><span class="t-ic t-ic-hist"></span><span class="t-txt"><b data-i18n="tHist">Antes y ahora</b><small data-i18n="tHistSub">50 años de pantallas</small></span></summary>
           <div class="topic-body">
-            <p class="explain" data-i18n="s3lead">Un día de una persona en EE.UU., cada 10 años. Cada cuadrado es 1 hora del día. Mirá cuándo aparece el rojo.</p>
+            <p class="explain"><span data-i18n="s3lead">Un día en EE.UU., cada 10 años.</span> <span class="mini-sq inline"></span> <span data-i18n="keyHour">= 1 hora</span></p>
+            <p class="era-top" data-i18n="noPhoneOnce">Antes de 2007 no había smartphones.</p>
             <div class="eras" id="eras"></div>
             <ul class="legend legend-eras" id="legend-eras"></ul>
-            <p class="small muted" data-i18n="erasNote">Hasta 2005 solo hay mediciones de TV por hogar (rayado: horas con la tele prendida en la casa, aunque nadie la mire). Desde 2005, por persona (liso). En 2005 se ven las dos para comparar.</p>
-            <p class="sub-h" data-i18n="chartQ">Todas las series en un gráfico</p>
+            <p class="small muted" data-i18n="erasNote">Rayado: TV prendida en la casa (antes de 2005 no se medía por persona).</p>
+            <p class="sub-h" data-i18n="chartQ">Todo junto</p>
             <svg id="chart" viewBox="0 0 360 260" role="img" aria-label="Horas por día de pantalla, 1975–2025"></svg>
             <ul class="legend" id="legend-chart"></ul>
             <p class="small muted" id="chart-tip"></p>
@@ -210,12 +224,12 @@
           <summary><span class="t-ic t-ic-ar">AR</span><span class="t-txt"><b data-i18n="tAr">Argentina</b><small data-i18n="tArSub">Lo que se sabe (y lo que no)</small></span></summary>
           <div class="topic-body">
             <div id="ar-stats" class="ar-stats"></div>
-            <p class="small muted" data-i18n="arNote">No hay datos confiables de horas por edad para Argentina ni para Latinoamérica: la encuesta TIC del INDEC mide si la gente usa internet, no cuántas horas.</p>
+            <p class="small muted" data-i18n="arNote">Para Argentina no hay horas por edad: el INDEC mide si usás internet, no cuánto.</p>
           </div>
         </details>
 
         <details class="topic" id="t-src">
-          <summary><span class="t-ic t-ic-src"></span><span class="t-txt"><b data-i18n="tSrc">Fuentes y método</b><small data-i18n="tSrcSub">De dónde sale cada número y cómo leerlo</small></span></summary>
+          <summary><span class="t-ic t-ic-src"></span><span class="t-txt"><b data-i18n="tSrc">Fuentes y método</b><small data-i18n="tSrcSub">De dónde sale cada número</small></span></summary>
           <div class="topic-body">
             <ul class="small caveat-list" id="caveats"></ul>
             <p class="sub-h" data-i18n="srcListH">Fuentes</p>
@@ -223,12 +237,12 @@
           </div>
         </details>
 
-        <button type="button" class="btn share-btn" data-i18n="share">Compartir mi resultado</button>
+        <button type="button" class="btn share-btn" data-i18n="share">Compartir mi grilla</button>
         <button type="button" class="btn ghost" id="replay" data-i18n="replay">Volver a ver el video</button>
       </section>
 
       <footer class="foot">
-        <p class="small" data-i18n="footA">Cada número enlaza a su fuente. "Derivado" = cuenta propia sobre la fuente; "verificar" = viene de un medio que cita la fuente original.</p>
+        <p class="small" data-i18n="footA">Cada número enlaza a su fuente.</p>
         <p class="small muted" data-i18n="footB">Hecho a partir de los videos 4.000 semanas · Parte 1 y 2.</p>
       </footer>
     </main>

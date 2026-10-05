@@ -57,3 +57,29 @@ Al cambiar archivos, subí `VERSION` en `sw.js` para que los celulares que ya la
 
 - Verificar a mano las cifras marcadas "verificar" (ver arriba).
 - Los nombres de menú de la guía de tiempo de pantalla pueden variar según la versión del sistema; conviene probarlos en un iPhone y en un Android reales.
+
+## Auditoría UX (v6)
+
+Un agente UX/UI hizo una auditoría "desde afuera" (celular, tablet y escritorio) y se aplicó casi todo:
+
+- **Datos de ejemplo marcados**: 30 años y 4 h aparecen en gris con "Ejemplo… Poné los tuyos". La barra
+  fija y el duelo recién aparecen cuando la persona pone sus datos.
+- **Link compartido**: "A Martín el celular le lleva 456 semanas. ¿Y a vos?" en el inicio. La cuenta no se
+  precarga con los datos ajenos; cuando ponés los tuyos aparece el duelo "vos vs. Martín" (`?edad&h&n`).
+- **Un solo escenario en la grilla**: "¿Y si bajás a…?" arranca en tus horas (0 recuperadas). Los ▢ y la
+  ficha "Recuperás N" aparecen recién cuando movés la barra.
+- **Una sola base**: la barra muestra solo lo que te queda; "1 de cada 6 semanas que te quedan"; horas como
+  "3 h 45 min" y semanas como "8 años y 4 meses" en toda la app.
+- **Grilla solo "año por año"** (se sacó la vista por bloques, que con el eje de edades confundía).
+- **Bloque de colores rediseñado**: "Ya viviste N" aparte, "TE QUEDAN N · TOCÁ UN COLOR", 4 fichas iguales
+  (celular destacado), una sola línea de detalle y una demo automática de 1,2 s la primera vez.
+- **Equivalencias que se sienten**: veranos, Mundiales y domingos que te quedan, y cuántos se lleva el celular.
+- **Video**: controles arriba (progreso, sonido solo con ícono, "Saltar ›"), pantalla de fin con
+  "Ir a mi cuenta" / "Volver a ver", y quien vuelve arranca con "Ir a mi cuenta".
+- **Textos podados** en toda la app; un nombre por color (vivido, dormir, trabajo, celular, libre); rojo solo
+  para el celular; etiquetas "cálculo propio" / "vía medio" en lugar de "derivado" / "verificar".
+- **Accesibilidad**: áreas táctiles de 44 px, foco visible, `aria-live` en el resultado, resumen de texto
+  de la grilla para lectores de pantalla y etiquetas claras en –/+.
+
+No se aplicó (decisión consciente): cambiar el naranja de trabajo a violeta, para no romper la coherencia con
+los videos; y usar una persona de 30 años en la historia, porque se mantiene la de 40 que se pidió.

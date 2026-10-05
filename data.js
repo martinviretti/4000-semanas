@@ -97,7 +97,7 @@ window.APP_DATA = {
     { id: "tvHome", color: "#8a8a8a", dash: "6 6", region: "US", points: [[1975, 6.18, "nielsen82", "p"], [1985, 7.17, "nielsen00", "p"], [1995, 7.28, "nielsen00", "p"], [2005, 8.23, "nielsen06", "s"]] },
     { id: "tvPerson", color: "#ffffff", region: "US", points: [[2005, 2.58, "atus05", "p"], [2015, 2.8, "atus15", "p"], [2025, 2.61, "atusNow", "p"]] },
     { id: "phone", color: "#ef4444", region: "US", points: [[2015, 1.52, "emk15", "p"], [2025, 4.13, "emk25", "s"]] },
-    { id: "internet", color: "#3b82f6", region: "global", points: [[2015, 6.33, "gwiConn", "p"], [2024, 6.63, "gwi", "p"]] },
+    { id: "internet", color: "#a78bfa", dash: "3 5", region: "global", points: [[2015, 6.33, "gwiConn", "p"], [2024, 6.63, "gwi", "p"]] },
   ],
 
   /* "Antes y ahora": un día de 24 h por década (EE.UU.). Hasta 2005 solo hay TV por HOGAR (rayado);
