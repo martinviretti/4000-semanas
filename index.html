@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <title>4.000 semanas — ¿cuánto de tu vida se lleva el celular?</title>
-    <meta name="description" content="Una vida de 80 años son 4.160 semanas. Poné tu edad y tus horas de celular y mirá cuántas se lleva la pantalla." />
+    <meta name="description" content="Una vida de 80 años son 4.160 semanas. Mirá cuántas se lleva el celular, y hacé la cuenta con tus números." />
     <meta name="theme-color" content="#000000" />
     <link rel="manifest" href="manifest.webmanifest" />
     <link rel="icon" href="icons/icon-192.png" />
@@ -19,71 +19,83 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <header class="top">
-      <a class="brand" href="#intro"><span class="brand-sq"></span><span data-i18n="brand">4.000 semanas</span></a>
+    <header class="top" id="top">
+      <a class="brand" href="#story"><span class="brand-sq"></span><span data-i18n="brand">4.000 semanas</span></a>
+      <nav class="top-nav" aria-label="Secciones">
+        <a href="#vida" data-i18n="navCalc">Mi cálculo</a>
+        <a href="#mas" data-i18n="navMore">Más datos</a>
+      </nav>
       <div class="top-actions">
         <button id="install" class="chip" hidden data-i18n="install">Instalar</button>
         <button id="lang" class="chip" aria-label="Cambiar idioma / Change language">EN</button>
       </div>
     </header>
 
-    <nav class="tabs" aria-label="Pasos">
-      <a href="#vida" class="tab"><span class="tab-n">1</span><span data-i18n="tab1">Tu vida</span></a>
-      <a href="#datos" class="tab"><span class="tab-n">2</span><span data-i18n="tab2">Por edad</span></a>
-      <a href="#historia" class="tab"><span class="tab-n">3</span><span data-i18n="tab3">Antes y ahora</span></a>
-    </nav>
+    <!-- ───────── 1. VIDEO (pantalla completa, arranca solo) ───────── -->
+    <section id="hero" class="hero" aria-label="Video de introducción">
+      <video id="hero-video" muted playsinline autoplay preload="auto" poster="video/poster_es.jpg">
+        <source id="video-src" src="video/weeks_es.mp4" type="video/mp4" />
+      </video>
+      <div class="hero-shade"></div>
+      <button type="button" class="hero-sound" id="sound" aria-pressed="false">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z" fill="currentColor" /><path id="sound-x" d="M16 9l5 6M21 9l-5 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" /><path id="sound-w" d="M16.5 8.5a5 5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" hidden /></svg>
+        <span data-i18n="soundOn">Activar sonido</span>
+      </button>
+      <button type="button" class="hero-play" id="hero-play" hidden aria-label="Reproducir"><span class="play-ic"></span></button>
+      <div class="hero-bottom">
+        <button type="button" class="hero-skip" id="skip" data-i18n="skip">Saltar</button>
+        <div class="hero-bar"><i id="hero-bar"></i></div>
+      </div>
+    </section>
+
+    <!-- ───────── 2. HISTORIA GUIADA (scroll) ───────── -->
+    <section id="story" class="story" aria-label="Una vida en semanas">
+      <div class="story-stage">
+        <div class="story-grid-wrap">
+          <canvas id="grid-story" class="weeks" aria-hidden="true"></canvas>
+        </div>
+        <div class="story-key"><span class="mini-sq"></span><span data-i18n="key1">= 1 semana</span><span class="sep">·</span><span data-i18n="key2">1 fila = 1 año</span></div>
+        <div class="story-caption" aria-live="polite">
+          <p class="cap-kicker" id="cap-kicker"></p>
+          <p class="cap-big"><span class="cap-num" id="cap-num">4.160</span> <span class="cap-unit" id="cap-unit"></span></p>
+          <p class="cap-text" id="cap-text"></p>
+          <p class="cap-src" id="cap-src"></p>
+          <a href="#vida" class="cta" id="cap-cta" hidden data-i18n="ctaCalc">Hacer mi cálculo</a>
+        </div>
+        <div class="story-dots" id="story-dots" aria-hidden="true"></div>
+        <div class="scroll-hint" id="scroll-hint" data-i18n="scrollHint">Deslizá para seguir</div>
+      </div>
+      <div class="story-steps" id="story-steps"></div>
+    </section>
 
     <main>
-      <!-- ───────── INTRO: el concepto + video ───────── -->
-      <section id="intro" class="sec intro">
-        <h1 class="h1" data-i18n="introTitle">Una vida de 80 años son 4.160 semanas.</h1>
-        <p class="lead" data-i18n="introLead">En esta app, cada cuadrado es una semana de tu vida. Mirá el video de 47 segundos para entender la idea.</p>
-
-        <div class="key" aria-label="Cómo leer los cuadrados">
-          <div class="key-item"><span class="key-viz"><i class="sq"></i></span><span data-i18n="key1">1 cuadrado = 1 semana</span></div>
-          <div class="key-item"><span class="key-viz row52"></span><span data-i18n="key2">1 fila de 52 = 1 año</span></div>
-          <div class="key-item"><span class="key-viz grid80"></span><span data-i18n="key3">80 filas = una vida</span></div>
-        </div>
-
-        <div class="video-card" id="video-card">
-          <video id="intro-video" playsinline preload="none" poster="video/poster_es.jpg">
-            <source id="video-src" src="video/weeks_es.mp4" type="video/mp4" />
-          </video>
-          <button type="button" class="play" id="play" aria-label="Reproducir video">
-            <span class="play-ic"></span><span class="play-txt" data-i18n="play">Ver el video · 47 s</span>
-          </button>
-        </div>
-        <a href="#vida" class="skip" id="skip" data-i18n="skip">Saltar e ir a mis números ↓</a>
-      </section>
-
-      <!-- ───────── PASO 1: TU VIDA ───────── -->
+      <!-- ───────── 3. TU CÁLCULO ───────── -->
       <section id="vida" class="sec">
-        <p class="kicker"><span data-i18n="step">Paso</span> 1 / 3</p>
-        <h2 class="h2" data-i18n="s1title">¿Cuántas semanas se lleva tu celular?</h2>
+        <p class="kicker" data-i18n="s1kicker">Tu vida en semanas</p>
+        <h2 class="h2" data-i18n="s1title">¿Y la tuya? Hacé la cuenta.</h2>
 
         <div class="card inputs">
           <div class="steppers">
             <div class="stepper">
               <span class="st-label" data-i18n="age">Tu edad</span>
               <div class="st-row">
-                <button type="button" class="st-btn" data-step="age:-1" aria-label="Restar un año">−</button>
+                <button type="button" class="st-btn" data-step="age:-1" aria-label="−1">−</button>
                 <input id="age" class="st-val" type="number" inputmode="numeric" min="0" max="79" step="1" value="30" aria-label="Edad" />
-                <button type="button" class="st-btn" data-step="age:1" aria-label="Sumar un año">+</button>
+                <button type="button" class="st-btn" data-step="age:1" aria-label="+1">+</button>
               </div>
               <span class="st-unit" data-i18n="ageUnit">años</span>
             </div>
             <div class="stepper">
               <span class="st-label" data-i18n="hours">Celular por día</span>
               <div class="st-row">
-                <button type="button" class="st-btn" data-step="hours:-0.5" aria-label="Restar media hora">−</button>
+                <button type="button" class="st-btn" data-step="hours:-0.5" aria-label="−0,5">−</button>
                 <input id="hours" class="st-val red" type="number" inputmode="decimal" min="0" max="16" step="0.5" value="4" aria-label="Horas por día" />
-                <button type="button" class="st-btn" data-step="hours:0.5" aria-label="Sumar media hora">+</button>
+                <button type="button" class="st-btn" data-step="hours:0.5" aria-label="+0,5">+</button>
               </div>
               <span class="st-unit" data-i18n="hoursUnit">horas</span>
             </div>
           </div>
           <input id="hours-range" type="range" min="0" max="12" step="0.25" value="4" class="range-red" aria-label="Horas por día" />
-
           <details class="guide" id="guide">
             <summary data-i18n="guideQ">¿No sabés cuántas horas usás? Miralo en tu celular</summary>
             <div class="guide-tabs">
@@ -102,13 +114,13 @@
             <div class="big-stat"><span id="r-phone" class="num red">435</span><span class="unit" data-i18n="weeksPhone">semanas en el celular</span></div>
             <div class="big-sub" id="r-years"></div>
           </div>
-          <p class="explain" data-i18n="lifeExplain">Esta es tu vida: cada fila es un año. Arriba, en gris, lo que ya viviste. Desde tu fila para abajo, en qué se van las semanas que te quedan.</p>
+          <p class="chips-h" data-i18n="chipsH">Tocá un color para verlo en tu vida:</p>
+          <div class="chips" id="chips" role="group"></div>
+          <p class="focus-line" id="focus-line"></p>
           <div class="grid-wrap" id="life-wrap">
             <canvas id="grid-life" class="weeks" aria-label="Grilla de semanas de tu vida"></canvas>
           </div>
           <p class="row-info" id="row-info-life" data-i18n="tapRow">Tocá una fila para ver ese año en detalle.</p>
-          <ul class="legend" id="legend-life"></ul>
-          <p class="small muted" data-i18n="lifeOrder">En cada fila los colores están agrupados (no en orden de calendario): muestran cuántas de las 52 semanas de ese año van a cada cosa.</p>
         </div>
 
         <div class="card whatif">
@@ -127,73 +139,68 @@
             <label class="mini"><span data-i18n="work">Horas de trabajo / semana</span><input id="work" type="number" min="0" max="80" value="40" inputmode="numeric" /></label>
             <label class="mini"><span data-i18n="retire">Te jubilás a los</span><input id="retire" type="number" min="40" max="80" value="65" inputmode="numeric" /></label>
           </div>
-          <p class="small muted" data-i18n="advNote">Igual que en el video: dormir = horas de sueño sobre lo que te queda; trabajo = 48 semanas por año hasta la jubilación.</p>
+          <p class="small muted" data-i18n="advNote">Dormir = horas de sueño sobre lo que te queda; trabajo = 48 semanas por año hasta la jubilación.</p>
         </details>
-
-        <a href="#datos" class="next"><span data-i18n="next1">¿Es mucho o poco? Compará con la gente de cada edad</span><span class="arrow">→</span></a>
       </section>
 
-      <!-- ───────── PASO 2: POR EDAD ───────── -->
-      <section id="datos" class="sec">
-        <p class="kicker"><span data-i18n="step">Paso</span> 2 / 3</p>
-        <h2 class="h2" data-i18n="s2title">¿Y la gente de cada edad?</h2>
+      <!-- ───────── 4. MÁS DATOS ───────── -->
+      <section id="mas" class="sec">
+        <p class="kicker" data-i18n="moreKicker">Para los curiosos</p>
+        <h2 class="h2" data-i18n="moreTitle">¿Querés más datos?</h2>
+        <p class="lead" data-i18n="moreLead">Todo lo que hay detrás de los números, por tema. Abrí el que te interese.</p>
 
-        <div class="card versus" id="versus"></div>
-
-        <div class="card grid-card">
-          <div class="grid-head">
-            <div class="big-stat"><span id="l-total" class="num red">0</span><span class="unit" data-i18n="weeksPhone">semanas en el celular</span></div>
-            <div class="big-sub" id="l-years"></div>
+        <details class="topic" id="t-age">
+          <summary><span class="t-ic t-ic-age"></span><span class="t-txt"><b data-i18n="tAge">Por edad</b><small data-i18n="tAgeSub">Cuánto usa el celular cada generación</small></span></summary>
+          <div class="topic-body">
+            <div class="versus" id="versus"></div>
+            <div class="grid-card plain">
+              <div class="grid-head">
+                <div class="big-stat"><span id="l-total" class="num red">0</span><span class="unit" data-i18n="weeksPhone">semanas en el celular</span></div>
+                <div class="big-sub" id="l-years"></div>
+              </div>
+              <p class="explain" data-i18n="dataExplain">Una vida de 80 años donde cada edad usa el celular lo que hoy usa la gente de esa edad. Lo rojo de cada fila son las semanas de ese año que se van en la pantalla.</p>
+              <div class="grid-wrap" id="data-wrap"><canvas id="grid-data" class="weeks" aria-label="Grilla de una vida típica"></canvas></div>
+              <p class="row-info" id="row-info-data" data-i18n="tapRow">Tocá una fila para ver ese año en detalle.</p>
+              <ul class="legend" id="legend-data"></ul>
+            </div>
+            <p class="sub-h" data-i18n="stagesH">Etapa por etapa · tocá una para verla en la grilla</p>
+            <div id="groups" class="groups"></div>
           </div>
-          <p class="explain" data-i18n="dataExplain">Una vida de 80 años donde cada edad usa el celular lo que hoy usa la gente de esa edad. Lo rojo de cada fila son las semanas de ese año que se van en la pantalla.</p>
-          <div class="grid-wrap" id="data-wrap">
-            <canvas id="grid-data" class="weeks" aria-label="Grilla de una vida típica"></canvas>
-          </div>
-          <p class="row-info" id="row-info-data" data-i18n="tapRow">Tocá una fila para ver ese año en detalle.</p>
-          <ul class="legend" id="legend-data"></ul>
-        </div>
-
-        <p class="sub-h" data-i18n="stagesH">Etapa por etapa · tocá una para verla en la grilla</p>
-        <div id="groups" class="groups"></div>
-
-        <div class="card ar">
-          <h3 class="h3"><span class="flag">AR</span> <span data-i18n="arTitle">Argentina</span></h3>
-          <div id="ar-stats" class="ar-stats"></div>
-          <p class="small muted" data-i18n="arNote">No hay datos confiables de horas por edad para Argentina ni para Latinoamérica: la encuesta TIC del INDEC mide si la gente usa internet, no cuántas horas.</p>
-        </div>
-
-        <details class="card caveats">
-          <summary data-i18n="cavTitle">Cómo leer estos datos</summary>
-          <ul class="small" id="caveats"></ul>
         </details>
 
-        <a href="#historia" class="next"><span data-i18n="next2">¿Siempre fue así? Mirá 50 años de pantallas</span><span class="arrow">→</span></a>
-      </section>
-
-      <!-- ───────── PASO 3: ANTES Y AHORA ───────── -->
-      <section id="historia" class="sec">
-        <p class="kicker"><span data-i18n="step">Paso</span> 3 / 3</p>
-        <h2 class="h2" data-i18n="s3title">¿Siempre fue así?</h2>
-        <p class="lead" data-i18n="s3lead">Un día de una persona en EE.UU., cada 10 años. Mirá cuándo aparece el rojo.</p>
-
-        <div class="key key-sm">
-          <div class="key-item"><span class="key-viz"><i class="sq"></i></span><span data-i18n="keyHour">1 cuadrado = 1 hora</span></div>
-          <div class="key-item"><span class="key-viz row24"></span><span data-i18n="keyDay">24 cuadrados = 1 día</span></div>
-        </div>
-
-        <div class="card eras" id="eras"></div>
-        <ul class="legend legend-eras" id="legend-eras"></ul>
-        <p class="small muted" data-i18n="erasNote">Hasta 2005 solo hay mediciones de TV por hogar (rayado: horas con la tele prendida en la casa, aunque nadie la mire). Desde 2005, por persona (liso). En 2005 se ven las dos para comparar.</p>
-
-        <details class="card chart-card">
-          <summary data-i18n="chartQ">Ver todas las series en un gráfico</summary>
-          <svg id="chart" viewBox="0 0 360 260" role="img" aria-label="Horas por día de pantalla, 1975–2025"></svg>
-          <ul class="legend" id="legend-chart"></ul>
-          <p class="small muted" id="chart-tip"></p>
+        <details class="topic" id="t-hist">
+          <summary><span class="t-ic t-ic-hist"></span><span class="t-txt"><b data-i18n="tHist">Antes y ahora</b><small data-i18n="tHistSub">50 años de pantallas, década por década</small></span></summary>
+          <div class="topic-body">
+            <p class="explain" data-i18n="s3lead">Un día de una persona en EE.UU., cada 10 años. Cada cuadrado es 1 hora del día. Mirá cuándo aparece el rojo.</p>
+            <div class="eras" id="eras"></div>
+            <ul class="legend legend-eras" id="legend-eras"></ul>
+            <p class="small muted" data-i18n="erasNote">Hasta 2005 solo hay mediciones de TV por hogar (rayado: horas con la tele prendida en la casa, aunque nadie la mire). Desde 2005, por persona (liso). En 2005 se ven las dos para comparar.</p>
+            <p class="sub-h" data-i18n="chartQ">Todas las series en un gráfico</p>
+            <svg id="chart" viewBox="0 0 360 260" role="img" aria-label="Horas por día de pantalla, 1975–2025"></svg>
+            <ul class="legend" id="legend-chart"></ul>
+            <p class="small muted" id="chart-tip"></p>
+          </div>
         </details>
 
-        <a href="#vida" class="next next-up"><span data-i18n="next3">Volver a mis números</span><span class="arrow">↑</span></a>
+        <details class="topic" id="t-ar">
+          <summary><span class="t-ic t-ic-ar">AR</span><span class="t-txt"><b data-i18n="tAr">Argentina</b><small data-i18n="tArSub">Lo que se sabe (y lo que no)</small></span></summary>
+          <div class="topic-body">
+            <div id="ar-stats" class="ar-stats"></div>
+            <p class="small muted" data-i18n="arNote">No hay datos confiables de horas por edad para Argentina ni para Latinoamérica: la encuesta TIC del INDEC mide si la gente usa internet, no cuántas horas.</p>
+          </div>
+        </details>
+
+        <details class="topic" id="t-src">
+          <summary><span class="t-ic t-ic-src"></span><span class="t-txt"><b data-i18n="tSrc">Fuentes y método</b><small data-i18n="tSrcSub">De dónde sale cada número y cómo leerlo</small></span></summary>
+          <div class="topic-body">
+            <ul class="small caveat-list" id="caveats"></ul>
+            <p class="sub-h" data-i18n="srcListH">Fuentes</p>
+            <ul class="small src-list" id="src-list"></ul>
+          </div>
+        </details>
+
         <button type="button" class="btn share-btn" data-i18n="share">Compartir mi resultado</button>
+        <button type="button" class="btn ghost" id="replay" data-i18n="replay">Volver a ver el video</button>
       </section>
 
       <footer class="foot">
@@ -205,7 +212,7 @@
     <div class="sticky-res" id="sticky" aria-hidden="true">
       <span class="sr-num red" id="sticky-num">435</span>
       <span class="sr-txt" id="sticky-txt">semanas en el celular</span>
-      <button type="button" class="sr-btn share-btn" aria-label="Compartir" data-i18n="shareShort">Compartir</button>
+      <button type="button" class="sr-btn share-btn" data-i18n="shareShort">Compartir</button>
     </div>
     <div id="toast" class="toast" role="status" aria-live="polite"></div>
 
